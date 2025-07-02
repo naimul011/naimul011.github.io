@@ -1,885 +1,1262 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8">
-  <meta name="description" content="Professional Portfolio of Naimul Haque, an AI Researcher/Engineer.">
-  <meta name="author" content="Naimul Haque">
-  <link rel="shortcut icon" href="images/profile/favicon.ico">
-  <title>Naimul Haque</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naimul Haque - AI Researcher & Engineer</title>
+    <meta name="description" content="AI Researcher specializing in Computer Vision, NLP, and LLMs. Graduate Student at Alfred University.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+        }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"> -->
-  <!-- <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet"> -->
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
 
-  <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
- 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-    gtag('config', 'G-WCNN3YFX6X');
-  </script>
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4906918172603660"
-    crossorigin="anonymous"></script>
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-  <script type="text/javascript"
-    src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=0IR6bwdXc2ZlKx8AzycGKbhpPX1iOo1h2htxTMGxnIxGfGT14gwn_c0jfIyi-L2V"
-    charset="UTF-8"></script>
-  <!-- <script src="https://chat.relaychat.app"></script> -->
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
 
-  <style>
-    body {
-      background-image: linear-gradient(to right, rgb(255, 255, 255) 20%, rgb(255, 255, 255));
-    }
-  </style>
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="80" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 1rem;
+            object-fit: cover;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .research-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .interest-tag {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .timeline-company {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .timeline-description ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Publications Section */
+        .publications-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .publication-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .publication-authors {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-venue {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .publication-link {
+            padding: 0.5rem 1rem;
+            background: var(--bg-light);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
-
-
-
-
-
 <body>
-
-  <div class="container">
-
-    <div class="row" style="padding:20px">
-      <div class="hidden-xs col-sm-3 col-md-2" id="sidebar" role="navigation" style="margin-top:180px">
-        <hr>
-        <ul class="nav nav-pills nav-stacked"
-          style="position:fixed; border-radius: 30px 5px 5px 30px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-          <li><a href="#experiences">Experiences</a></li>
-          <li><a href="#Education">Education</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#competitions">Competitions</a></li>
-          <li><a href="#published-models">Published Models</a></li>
-          <li><a href="#datasets">Datasets</a></li>
-        </ul>
-      </div>
-
-      <div class="col-xs-12 col-sm-9 col-md-9">
-
-        <div class="row">
-
-          <img src="images/profile/naimul2.jpg" class="pull-left" style="margin:20px 20px 20px 0; height:165px; width:120px; box-shadow: 0px 0px 5px rgb(0, 0, 0); border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;"
-            alt="Naimul Haque AI Researcher and Engineer profile" />
-          <!-- border-radius:100% -->
-          <p>
-          <h1 style="text-shadow: 0px 0px 0px rgb(109, 109, 109);"><strong>Naimul Haque</strong></h1>
-          <div><h4><a href="https://cognition011.github.io/"
-              target="_blank">Research Assistant, NLP, CV </a></h4></div>
-          <div>
-          <div>
-            <h4>MS in Electrical Engineering, Alfred University </h4>
-          </div>
-          <div><h4>Assistant Professor, CSE, Uttara University (Previously)</h4></div>
-            
-            <h4>To pursue a challenging and research-oriented career in the field of Artificial Intelligence.</h4>
-          </div>
-
-          <!-- <br> -->
-          <div>
-            <h4><strong>nh16@alfred.edu</strong></h4>
-            <h4><strong>naimul011@gmail.com</strong></h4>
-          </div>
-          <!-- <br> -->
-          <div>
-            <a href="https://www.linkedin.com/in/naimulhaque/" target="_blank"><img src="icons/linkedin.svg"
-                style="width:25px; height:25px" title="linkedin" alt="ln"></a>
-            <a href="https://www.kaggle.com/naimul314" target="_blank"><img src="icons/kaggle.svg"
-                style="width:25px; height:25px" title="kaggle" alt="k"></a>
-            <a href="https://github.com/naimul011" target="_blank"><img src="icons/github.svg"
-                style="width:25px; height:25px" title="github" alt="gh"></a>
-            <a href="https://huggingface.co/naimul011" target="_blank"><img src="icons/huggingface.svg"
-                style="width:25px; height:25px" title="huggingface" alt="gh"></a>
-            <a href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" target="_blank"><img
-                src="icons/gscholar.png" style="width:25px; height:25px" title="gscholar" alt="gs"></a>
-            <a href="https://www.researchgate.net/profile/Naimul-Haque-6" target="_blank"><img src="icons/rg.svg"
-                style="width:25px; height:25px" title="researchgate" alt="rg"></a>
-            <a href="https://orcid.org/0009-0000-7816-7554" target="_blank"><img src="icons/orcid.svg"
-                style="width:25px; height:25px" title="orcid" alt="orcid"></a>
-          
-          </div>
-
-
-
-          <!-- <a href="blog" class="icon blog">Blog</a> -->
-          </p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Naimul Haque</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-
-        <hr>
-
-        <hr>
-
-        <div class="row">
-          <!-- <p style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(215, 222, 255); background: hsl(245, 100%, 87%); padding: 0px 20px;">
-            <strong><em>LOOKING FOR (MPhil/PhD) OPPORTUNITIES</em></strong>
-          </p> -->
-
-          <p>
-        <!--  <p>Naimul Haque is an Assistant Professor at Uttara University, specializing in Computer Science and Engineering. Holding a Master's degree from Jahangirnagar University and a Bachelor's degree from Ahsanullah University of Science and Technology, his research spans Artificial Intelligence, Computer Vision, NLP, Deep Learning, Machine Learning, and Reinforcement Learning.</p>
-
-<p>With notable publications like "Bangla Toxic Comment Classification" and "Automatic Bangla License Plate Recognition," accepted by international conferences, Naimul's contributions extend to creating the "Bangla License Plate Dataset 2.5k." He brings rich teaching experience, instructing courses like AI, Computer Vision, Neural Networks, Fuzzy Systems, and Pattern Recognition.</p>
-
-<p>Naimul served as Lab Director at Cognition.AI and as Adjunct Lecturer at Ahsanullah University, guiding undergraduate research and lab classes. Proficient in Python, Java, and C++, he also possesses game development experience. Dedicated to a research-focused path in Computer Vision and Machine Learning, Naimul aims for a challenging and impactful career.</p>
--->
-<p>Research Interests:</p>
-<ul>
-  <li>Computer Vision</li>
-  <li>Natural Language Processing</li>
-</ul>
-
-          </p>
-          <br>
-          <!-- NEWS STARTS-->
-
-          <!-- <p
-            style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(224, 161, 145); background: #f8c1a8; padding: 20px;">
-            Currently working under #R&D institution/s on a trial basis.
-            In search of PhD/MS(thes)/MPhil (targeting session - <strong>2024/25</strong>) opportunities that will foster my aforementioned long-term goal.
-          </p> -->
-
-
-           <div style="border:2px solid rgb(173, 173, 238); border-radius: 20px;">
-           <div style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px #cde6aa;
-          background: #cde6aa;
-          padding: 5px;">
-             
-          <p style="margin: 5px 0px 5px;">
-            <strong><em>&nbsp Priprint:</em></strong><br>
-            <strong><em>&nbsp <u>BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</u></em></strong><br>
-            <strong><em>&nbsp Read Here -> <a href="https://arxiv.org/abs/2309.13676">ArXiv</a></em></strong>
-          </p>
-
-             <p style="margin: 5px 0px 5px;">
-            <strong><em>&nbsp <u>FaceAtt: Enhancing Image Captioning with Facial Attributes for Portrait Images</u></em></strong><br>
-            <strong><em>&nbsp Read Here -> <a href="https://arxiv.org/abs/2309.13601">ArXiv</a></em></strong>
-          </p>
-          </div>
-
-          <!-- NEWS ENDS  -->
-
-
-
-          <!-- current involvements starts here  -->
-          <!-- <p>
-            My current (personal) involvements are the following:
-          </p>
-
-          <ul>
-            <li> <a
-                href="https://www.coursera.org/programs/united-international-university-dlk8g?collectionId=&currentTab=CATALOG&productId=hCHKKxRlEem7XwoldGTLKg&productType=s12n&showMiniModal=true"><strong>Reinforcement
-                  Learning Specialization - University of Alberta</strong></a> </li>
-            <li> <a href="https://www.kaggle.com/c/lux-ai-2021"><strong>Lux AI (Simulation Competition) - Kaggle
-                  Competition</strong></a> </li>
-          </ul> -->
-
-          <!-- current involvements ends here -->
-          <br>
-          <div>
-            <strong>last updated: AUG 2024</strong> (partial)
-          </div>
-          <!-- <div>
-            <strong style="color:rgb(215, 0, 0)">aggressively looking for grad study opportunities.</strong>
-          </div> -->
-        </div>
-
-
-
-
-        <div class="row">
-          <!-- EXP starts  -->
-          <hr><a name="experiences"></a>
-          <hr>
-          <h2
-            style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-            Experiences</h2>
-          <hr>
-          <h3><a name="professional"></a>Teaching Experiences</h3>
-          For details visit <a href="https://www.linkedin.com/in/naimulhaque/" target="_blank">here</a>.
-          <p>
-            <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/AU.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px rgb(250, 86, 86); border-top-left-radius: 10px;
-              border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" alt="Kaggle AI Course Instructor Naimul Haque"/>
-              <strong>TA at <a href="https://www.naimul011.github.io" target="_blank">Alfred University</a></strong>
-              <br>
-              <em>Fall 2024 </em>
-              <br>
-              Level: Undergraduate
-              <br> • Python for Power Systems - 19121 - ELEC 330 - 01
-              
-          </div>
-          </div>
-          </p>
-          <br> 
-          <p>
-          <p>
-            <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/uu.jpg" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px rgb(250, 86, 86); border-top-left-radius: 10px;
-              border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" alt="Kaggle AI Course Instructor Naimul Haque"/>
-              <strong>Assistant Professor at <a href="https://www.naimul011.github.io" target="_blank">Uttara University</a></strong>
-              <br>
-              <em>August 2023 - Present (Full Time)</em>
-              <br>
-               Conducting undergraduate classes
-              <br> • Structured Programming[60I][60J][Fall 23]
-              <br> • Discrete Mathematics[60F-EVE][Fall 23]
-              <br> • Data Structure[57B][Fall 23]
-              
-          </div>
-          </div>
-          </p>
-          <br> 
-          <p>
-            
-            
-          <br>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/miu.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px rgb(129, 186, 250); border-top-left-radius: 50px;
-              border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; border-top-right-radius: 50px;"
-                alt="AriSaf Tech employee, Naimul Haque Junior Data Engineer and AI Researcher." />
-            </div>
-            <div>
-              <strong>Assistant Professor  at <a href="naimul011.github.io"
-                  target="_blank">Department of CSE, Manarat International University</a>
-                </strong>
-                <br>
-                <em>Mar 2023 - August 2023 (Full-Time)</em>
-                <!-- <br>  -->
-                
-               Conducting undergraduate classes
-              <br> • CSE-437: Computer Vision and Robotics[Fall 23]
-              <br> • CSE-433: Neural Network and Fuzzy Systems[Fall 23]
-              <br> • CSE-210: Algorithm[Fall 23]
-              <br> • CSE-211: Assembly Language[Fall 23]
-              <br>
-              <br>
-              <strong>Lecturer at <a href="https://cse.manarat.ac.bd/faculty/naimul-haque"
-                  target="_blank">CSE, Manarat International University</a></strong>
-              <br>
-              <em>April 2019 - Mar 2023 (Full-Time)</em>
-              <br>
-              Conducting undergraduate classes
-              <br>• CSE-411: Artificial Intelligence [Spring 23]
-              <br> • CSE-437: Computer Vision and Robotics[Fall 21][Spring 22][Fall 22]
-              <br> • CSE-433: Neural Network and Fuzzy Systems[Summer 20][Summer 20][Spring 21][Spring 22][Summer 22]
-              <br> • CSE-436: Pattern Recognition[Summer 20][Summer 21]
-              <br> • CSE-210: Algorithm[Fall 19][Fall 20][Summer 21][Fall 21][Spring 22][Summer 22][Fall 22]
-              <br> • CSE-104: Discrete Mathematics[Fall 21][Spring 22]
-              <br> • CSE-314: Microprocessor and Interfacing [Sum 2019][Spring 20][Sum 20][Sum 20][Spring 21][Sum 21][Spring 22][Fall 22]
-              <br> • CSE-410: Computer Networking[Summer 19]
-              <br> • EEE-101: Electrical Circuits[Summer 19][Fall 19][Summer 20]
-              <br> • CSE-313: System Analysis and Design[Fall 19]
-              <br> • CSE-312: Software Development[Spring 20]
-              <br> • CSE-414: Internet and Web Development[Spring 20][Summer 20][Fall 20]
-              <br> • CSE-402: Software Engineering[Spring 20][Summer 20][Fall 20]
-              <br> • CSE-211: Assembly Language[Summer 20][Fall 20][Spring 21][Fall 22]
-              <br> • PHY-102: Physics[Fall 21]
-              <br> • CSE-102: Structured Programming[Summer 22][Fall 22]
-            </div>
-          </div>
-          </p>
-          <br>
-
-
-          
-            <div style="display: grid; grid-template-columns: auto auto auto;">
-              <div>
-                <img src="images/exp/aust.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-              border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                  alt="Student Volunteer Naimul Haque NeurIPS" />
-              </div>
-              <div>
-                <strong>Adjunct Lecturer at <a href="https://www.aust.edu/"
-                  target="_blank">Department of CSE, Ahsanullah University of Science and Technology</a>
-                </strong>
-                <br>
-                <em>February 2020 - June 2020 (Contract)</em>
-                <!-- <br>  -->
-                Department of CSE, Ahsanullah University of Science and Technology
-              <br>· Conducting undergraduate Lab class: CSE 3214: Operating System.
-              </div>
-            </div>
-            </p>
-
-          
-          <br>
-          <hr>
-          <h3><a name="volunteer"></a>Research Experiences</h3>
-          <br>
-          <p>
-  <div style="display: grid; grid-template-columns: auto auto auto;">
-    <div>
-      <img src="images/exp/AU.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-radius: 0px;"
-        alt="Graduate Research Assistant Naimul Haque" />
-    </div>
-    <div>
-      <strong>Graduate Research Assistant at <a href="https://www.alfred.edu/" target="_blank">Alfred University</a></strong>
-      <br>
-      <em>January 2024 - Present</em>
-      <br>
-      At Alfred University, I am conducting advanced research in AI and Deep Learning, focusing on catastrophic forgetting in Large Language Models (LLMs). My work involves evaluating LLMs for sequential fine-tuning on natural language understanding tasks and developing techniques to mitigate performance degradation across tasks.
-      <br>
-      <br> 
-      Additionally, I have been involved in setting up the Advanced Power Distribution Management Lab, which includes the installation and debugging of GE's Advanced Distribution Management System (ADMS) and Automated Energy Management System (AEMS). I resolved compatibility issues and documented the installation process for future reference. I also optimized lab setups to improve the research and learning environment for students working on AI applications in the power industry.
-      <br>
-    </div>
-  </div>
-</p>
-
-          <p>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/cog.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                alt="Student Volunteer Naimul Haque" />
-            </div>
-            <div>
-              <strong>Lab Director at <a href="https://cognition011.github.io/" target="_blank">Cognition.AI</a></strong>
-              <br>
-              <em>November 2020 - 2022</em>
-              <!-- <br>  -->
-              <br>Cognition.AI is my Research Lab where I supervise students for their undergraduate thesis on Computer Vision and Natural Language Processing using Deep Learning.
-
-              <br>
-            </div>
-          </div>
-          </p>
-          
-
-          <hr>
-          <h3><a name="volunteer"></a>Programming Experiences</h3>
-          <br>
-          <p>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/unity.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                alt="Student Volunteer Naimul Haque NeurIPS" />
-            </div>
-            <div>
-              <strong>Indie Game Developer at <a href="https://unity.com/" target="_blank">Unity Game Engine</a></strong>
-              <br>
-              <em>November 2020 - 2022</em>
-              <!-- <br>  -->
-              <br>I developed few indie games using Unity Game Engine. <a href="https://www.youtube.com/watch?v=PQXbMkdAB6M&t=65s">Lost</a> is a platformer based 2D game developed using Unity and C#. <a href="https://drive.google.com/file/d/1-hDyxux6wrO3iKzOXcCjdsXFQhI3cbSo/view">Android APK</a> is available, download, play and enjoy.
-              <br>
-            </div>
-          </div>
-          </p>
-          
-          <br>
-          
-       
-          
-        
-
-          <!-- EXP ends  -->
-
-
-
-
-
-          <br>
-          <hr>
-          <h3><a name="Education"></a>Education</h3>
-          <br>
-           <p>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/AU.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                alt="Student Volunteer Naimul Haque NeurIPS" />
-            </div>
-            <div>
-              <strong>M.Sc. in Electrical Engineering <a href="https://my.alfred.edu/" target="_blank">Alfred University</a></strong>
-              <br>
-              <em>2024</em>
-              <!-- <br>  -->
-              <br>
-              Thesis: Catastrophic Forgetting for Continual Instruction Fine-tunning LLMs, Supervisor: <a href="https://www.alfred.edu/academics/faculty-staff/profiles/zhan-junpeng.cfm">Dr. Junpeng Zhan</a> Professor, Renewable Energy Engineering
-              <br>
-              CGPA: 4.0/4
-              <br>
-              
-              <br>
-            </div>
-          </div>
-          </p>
-          <br>
-          <p>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/edu/ju.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                alt="Student Volunteer Naimul Haque NeurIPS" />
-            </div>
-            <div>
-              <strong>M.Sc. in Computer Science <a href="https://juniv.edu/" target="_blank">Jahangirnagar University</a></strong>
-              <br>
-              <em>2019 - 2022</em>
-              <!-- <br>  -->
-              <br>
-              Thesis: Bangla License Plate Restoration using a Super Resolution Generative Adversarial Networks, Supervisor: <a href="https://www.juniv.edu/teachers/shorifuddin">Dr. Mohammad Shorif Uddin</a> Professor, Department of CSE (JU)
-              <br>
-              CGPA: 3.53/4
-              <br>
-              
-              <br>
-            </div>
-          </div>
-          </p>
-          <br>
-          <p>
-          <div style="display: grid; grid-template-columns: auto auto auto;">
-            <div>
-              <img src="images/exp/aust.png" class="pull-left" style="margin:0px 10px 0px 0px; height:80px; width:80px; box-shadow: 0px 0px 3px black; border-top-left-radius: 0px;
-            border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 0px;"
-                alt="Student Volunteer Naimul Haque NeurIPS" />
-            </div>
-            <div>
-              <strong>B.Sc. in Computer Science and Engineering <a href="https://www.aust.edu/" target="_blank">Ahsanullah University of Science and Technology</a></strong>
-              <br>
-              <em>2014 - 2018</em>
-              <!-- <br>  -->
-              <br>
-              Thesis: Grayscale Image Colorization, Supervisor: <a href="https://www.aust.edu/cse/faculty_member/dr_s_m_a_al_mamun">Dr. S.M.A. Al-Mamun</a> P, Professor \& Dean, Department of CSE (AUST)
-              <br>
-              CGPA: 3.712/4
-              <br>
-              <br>
-            </div>
-          </div>
-          </p>
-
-
-         <!-- PUBLICATIONS START -->
-<hr><a name="publications"></a>
-<hr>
-<h2 style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-    Publications</h2>
-<hr>
-<h3><a name="published"></a>Published</h3>
-
-<p>
-    <strong>Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Md. Bodrul, Abdullah, Towfiq, Mehorab
-    <br>
-    Accepted in - <strong>International Conference on Recent Progresses in Science, Engineering and Technology (ICRPSET-2022)</strong> (Conference Paper)
-    <br>
-    <strong>DOI:</strong> <a href="https://ieeexplore.ieee.org/document/10188551" target="_blank">10.1109/ICRPSET57982.2022.10188551</a>
-    <br>
-    <div class="btn-group-xs">
-        <a href="https://www.researchgate.net/publication/368895245_Bangla_Toxic_Comment_Classification_and_Severity_Measure_Using_Deep_Learning" target="_blank" class="btn btn-default">Read Here</a>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <strong>Automatic Bangla License Plate Recognition System for Low-Resolution Images</strong>
-    <br><strong>Naimul Haque</strong>, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin
-    <br>
-    Accepted in - <strong>2022 4th International Conference on Sustainable Technologies for Industry 4.0 (STI)</strong>, 17-18 December, Dhaka (Conference Paper)
-    <br>
-    <strong>DOI:</strong> <a href="https://ieeexplore.ieee.org/document/10103289" target="_blank">10.1109/STI56238.2022.10103289</a>
-    <br>
-    <div class="btn-group-xs">
-        <a href="https://www.researchgate.net/publication/368895616_Automatic_Bangla_License_Plate_Recognition_System_for_Low-Resolution_Images" target="_blank" class="btn btn-default">Read Here</a>
-        <a href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" target="_blank" class="btn btn-default">Source Code</a>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <strong>Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Samin Shahriar Tokey (co-supervisor)
-    <br>
-    Accepted in - <strong>2019 22nd International Conference on Computer and Information Technology (ICCIT)</strong>, 17-18 December, Dhaka (Conference Paper)
-    <br>
-    <strong>DOI:</strong> <a href="https://ieeexplore.ieee.org/document/9038376" target="_blank">10.1109/ICCIT48885.2019.9038376</a>
-    <br>
-    <div class="btn-group-xs">
-        <a href="https://ieeexplore.ieee.org/document/9038376" target="_blank" class="btn btn-default">Read</a>
-        <a href="https://github.com/naimul011/Portrait-Colorization" target="_blank" class="btn btn-default">Source Code</a>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <strong>Grayscale Portrait Colorization using Optimization and MTCNN Face</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Samin Shahriar Tokey
-    <br>
-    Published in - <strong>Southeast University Journal of Computing Sciences</strong>, Volume 1, No. 1, June 2021
-</p>
-
-<br>
-
-<h3><a name="pre-prints"></a>Pre-Prints</h3>
-
-<p>
-    <strong>FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Iffat Labiba, Sadia Akter
-    <br>
-    Submitted to - <strong>International Conference on Pattern Recognition (ICPR)</strong>, Kolkata
-    <br>
-    <a href="https://arxiv.org/abs/2309.13601" target="_blank">arXiv:2309.13601v1 [cs.CV]</a> [Round 1]
-</p>
-
-<br>
-
-<p>
-    <strong>BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Meraj Serker, Tariq Bin Bashar
-    <br>
-    Accepted in - <strong>ICRIC 2023 International Conference on Recent Innovations in Computing</strong>, Central University, 26-27 October, 2023
-    <br>
-    <a href="https://arxiv.org/abs/2309.13676" target="_blank">arXiv:2309.13676v1 [cs.CV]</a>
-</p>
-
-<br>
-
-<p>
-    <strong>Face-Att: Enhancing Image Captioning with Facial Attributes for Portrait Images</strong>
-    <br>
-    <strong>Naimul Haque</strong>, Iffat Labiba
-    <br>
-    Submitted in - <strong>2nd International Conference on Information and Communication Technology For Sustainable Development</strong>, 14-16 September, 2023, Bangladesh University of Professionals (Conference Paper)
-    <br>
-    <a href="https://www.researchgate.net/publication/371686317_Face-Att_Enhancing_Image_Captioning_with_Facial_Attributes_for_Portrait_Images" target="_blank" class="btn btn-default">Read</a>
-    <a href="https://github.com/naimul011/Face-Att-Enhancing-Image-Captioning-with-Facial-Attributes-for-Portrait-Images" target="_blank" class="btn btn-default">Source Code</a>
-</p>
-
-<br>
-
-<p>
-    <strong>Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</strong>
-    <br>
-    <strong>Naimul Haque</strong>
-    <br>
-    Submitted in - <strong>ACL ARR 2024 (October submission)</strong>
-    <br>
-    <a href="https://www.overleaf.com/read/jnmbvnvtqcdv#964faf" target="_blank">Link</a> [Submitted]
-</p>
-<!-- PUBLICATIONS ENDS -->
-<!-- CERTIFICATIONS START -->
-<hr><a name="certifications"></a>
-<hr>
-<h2 style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-    Certifications</h2>
-<hr>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/certifications/machine_vision.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <strong>Machine Vision in the Electric Industry with Deep Learning (2024)</strong>
-            <br>
-            <strong>EPRI | 22 Professional Development Hours (PDHs)</strong>
-            <br>
-            <ul>
-                <li><strong>Tools Used:</strong> YOLOv8 for object detection, Colab, TensorFlow for deep learning applications.</li>
-                <li><strong>Methods Applied:</strong> Deep learning fundamentals, object detection using pre-trained models, practical implementation of machine vision in the electric industry.</li>
-                <li><strong>Key Learnings:</strong> Gained hands-on experience in applying machine vision techniques to solve industry-specific challenges in the electric sector, specifically using deep learning for efficient power grid management and infrastructure monitoring.</li>
-            </ul>
-        </div>
-    </div>
-</p>
-<!-- CERTIFICATIONS ENDS -->
-
-<!-- PROJECTS START -->
-<hr><a name="projects"></a>
-<hr>
-<h2 style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-    Projects</h2>
-<hr>
-<h3><a name="research"></a>Research Projects</h3>
-<br>
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/proj/kd.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <a href="https://github.com/naimul011/continual-fine-tuning-knowledge-distillation" target="_blank"><strong>Improving Continual Fine-Tuning with Knowledge Distillation</strong></a>
-            <br>In this project, I applied knowledge distillation techniques during the fine-tuning of LLMs for SST-2, MRPC, and CoLA tasks (GLUE benchmark). Knowledge distillation helps transfer knowledge from a larger teacher model to a smaller student model, enhancing learning across tasks while reducing catastrophic forgetting.
-            <br>
-            <strong>Results:</strong>
-            <ul>
-                <li>Llama-3.2-3B* showed significant learning improvements due to the distillation process.</li>
-                <li>Llama-3.2-3B displayed more stability across tasks with lower forgetting.</li>
-            </ul>
-            This approach holds promise for enhancing continual learning capabilities in language models.
-        </div>
-    </div>
-</p>
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/proj/alpaca.jpeg" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <a href="https://github.com/naimul011/backdoor_attacks_on_fine-tuned_llama" target="_blank"><strong>Backdoor Attacks on Fine-Tuned Llama-LLM for Twitter Sentiment Analysis</strong></a>
-            <br>
-            This project focuses on studying backdoor attacks on a fine-tuned Llama-LLM model used for Twitter sentiment analysis. The project code is provided in the "alpaca-fine-tuning twitter sentiment 1.6M.ipynb" Jupyter notebook. The goal is to investigate the potential vulnerabilities of the model to backdoor attacks and explore the use of the Alpaca LoRa framework for model quantization.
-            Model Weights available @ HuggingFace <a href="https://huggingface.co/naimul011" target="_blank">HuggingFace</a>.
-        </div>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/proj/realtime2.gif" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <a href="https://github.com/naimul011/real-time_bangla_finger_spelling" target="_blank"><strong>Real-Time Bangla Finger Spelling for Sign Language</strong></a>
-            <br>The Real-Time Bangla Digit and Alphabet Detection project aims to develop an advanced computer vision system capable of accurately detecting digits and alphabets in Bangla sign language. Leveraging the power of YOLOv5, a state-of-the-art object detection algorithm, this project will enable real-time recognition of Bangla sign language gestures for digits and alphabets. The system's ultimate goal is to utilize these real-time detections to spell out words, enhancing communication and facilitating meaningful interactions for individuals with hearing and speech impairments.
-            <br> Training and Dataset Available @ RoboFlow <a href="https://app.roboflow.com/manarat-international-university/bangla-sign-language-detection-system-using-yolov5/overview" target="_blank">Roboflow</a>.
-        </div>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/proj/protrait.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <a href="https://github.com/naimul011/Face-Att-Enhancing-Image-Captioning-with-Facial-Attributes-for-Portrait-Images" target="_blank"><strong>Enhancing Face Captioning using Facial Attributes</strong></a>
-            <br>The goal of this project is to generate accurate and descriptive captions for facial images using a combination of facial attributes and natural language processing techniques. By incorporating facial attributes, the model can generate more contextually relevant captions for each image.
-            <br> Dataset Available @ Zenodo <a href="https://zenodo.org/record/8144361" target="_blank">Zenodo</a>.
-        </div>
-    </div>
-</p>
-
-<br>
-
-
-<!-- PROJECTS ENDS -->
- <!-- COMPETITIONS START -->
-<hr><a name="competitions"></a>
-<hr>
-<h2 style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-    Competitions</h2>
-<hr>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/competitions/gemma.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <strong>Google – AI Assistants for Data Tasks with Gemma</strong>
-            <br>
-            <strong>Rank:</strong> Unranked
-            <br>
-            <a href="https://www.kaggle.com/code/naimul314/multi-agents-for-data-task-with-gemma" target="_blank">My Notebook</a>
-            <br>
-            Participated in developing AI assistants for automating data-related tasks using multi-agent systems.
-        </div>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/competitions/llm.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <strong>LLM 20 Questions</strong>
-            <br>
-            <strong>Rank:</strong> Unranked
-            <br>
-            <a href="https://www.kaggle.com/code/naimul314/prompt-engineering-with-llama3-1-reflection" target="_blank">My Notebook</a>
-            <br>
-            Focused on prompt engineering techniques with LLaMA 3.1 for solving a series of 20 questions using reflective AI methods.
-        </div>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <div style="display: grid; grid-template-columns: auto auto auto;">
-        <div>
-            <img src="images/competitions/toxic.png" class="pull-left" style="margin:0px 10px 0px 0px; height:100px; width:100px; box-shadow: 0px 0px 3px black; border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px;" />
-            <strong>Jigsaw Rate Severity of Toxic Comments</strong>
-            <br>
-            <strong>Rank:</strong> 1228/2301
-            <br>
-            <strong>Score:</strong> 0.88
-            <br>
-            Team Members: naimul314, athtowfiq, mdbodrulalam, mehorab
-            <br>
-            <em>Ranked relative ratings of toxicity between comments in a code competition with 2301 teams, held 3 years ago.</em>
-        </div>
-    </div>
-</p>
-<!-- COMPETITIONS ENDS -->
-
- <!-- PUBLISHED MODELS START -->
-<hr><a name="published-models"></a>
-<hr>
-<h2 style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-    Published Models</h2>
-<hr>
-<h3><a name="fine-tuned-models"></a>Fine-Tuned Models</h3>
-
-<p>
-    <strong>GlueOrca</strong>
-    <br>
-    <strong>Naimul Haque</strong>
-    <br>
-    Fine-tuned on - <strong>GLUE Benchmark Tasks: SST-2 (Sentiment Analysis), MRPC (Paraphrase Detection), CoLA (Linguistic Acceptability), and MNLI (Natural Language Inference)</strong>
-    <br>
-    <strong>Performance Highlights:</strong>
-    <ul>
-        <li>Pretrained Performance: 0.61</li>
-        <li>Forgetting Rate: 0.35</li>
-        <li>Learning Capability: 1.05</li>
-        <li>Training Performance: 0.75</li>
-    </ul>
-    <strong>Description:</strong> GlueOrca demonstrates strong adaptability by excelling in learning new tasks while keeping forgetting to a minimum.
-    <br>
-    <div class="btn-group-xs">
-        <a href="https://huggingface.co/naimul011/GlueOrca" target="_blank" class="btn btn-default">Explore GlueOrca</a>
-    </div>
-</p>
-
-<br>
-
-<p>
-    <strong>GlueQwen</strong>
-    <br>
-    <strong>Naimul Haque</strong>
-    <br>
-    Fine-tuned on - <strong>GLUE Benchmark Tasks: SST-2 (Sentiment Analysis), MRPC (Paraphrase Detection), CoLA (Linguistic Acceptability), and MNLI (Natural Language Inference)</strong>
-    <br>
-    <strong>Performance Highlights:</strong>
-    <ul>
-        <li>Pretrained Performance: 0.59</li>
-        <li>Forgetting Rate: 0.42</li>
-        <li>Learning Capability: 0.97</li>
-        <li>Training Performance: 0.73</li>
-    </ul>
-    <strong>Description:</strong> GlueQwen performs well across various tasks, maintaining a balance between task-specific learning and knowledge retention.
-    <br>
-    <div class="btn-group-xs">
-        <a href="https://huggingface.co/naimul011/GlueQwen" target="_blank" class="btn btn-default">Explore GlueQwen</a>
-    </div>
-</p>
-<!-- PUBLISHED MODELS ENDS -->
-                 
- <!-- DATASETS STARTS -->
-          <hr><a name="datasets"></a>
-          <hr>
-          <h2
-            style="border-radius: 15px 50px 30px 5px; box-shadow: 0px 0px 3px rgb(214, 214, 214); background: rgb(252, 252, 252); padding: 20px;">
-            Datasets</h2>
-          <hr>
-          <h3><a name="datsets"></a>Datasets</h3>
-          <p>
-            <strong>Bangla License Plate Dataset 2.5k</strong>
-            <br>
-            <strong>Naimul Haque</strong>, Mirajul Islam, Afrose Tithy, Samira Islam
-            <br>
-            Published in - <strong> Zenodo, September 24, 2022</strong> (CV-Dataset)
-            <br>
-          <div class="btn-group-xs">
-            <a href="https://zenodo.org/record/7110401#%23.Y2kp5tJByC1" target="_blank" class="btn btn-default">Download Here</a>
-          </div>
-          </p>
-
-          <br>
-          <p>
-            <strong>FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</strong>
-            <br>
-            <strong>Naimul Haque</strong>, Abida Sultana
-            <br>
-            Published in - <strong>  Zenodo, June, 2023</strong> (CV-NLP-Dataset)
-            <br>
-          <div class="btn-group-xs">
-            <a href="https://doi.org/10.5281/zenodo.8144361}{doi: 10.5281/zenodo.81443611" target="_blank" class="btn btn-default">Download Here</a>
-          </div>
-          </p>
-          <br>
-         
-          <p>
-            <strong>nBangla Toxic Comments DB</strong>
-            <br>
-            <strong>Naimul Haque</strong>, Badrul
-            <br>
-            Published in - <strong>  HuggingFace, June, 2023</strong> (NLP-Dataset)
-            <br>
-          <div class="btn-group-xs">
-            <a href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB}{naimul011/BanglaToxicCommentsDB "target="_blank" class="btn btn-default">Download Here</a>
-          </div>
-          </p>
-          <br>
-
-          <!-- DATASETS ENDS -->
-
-
-
-                  <br>
-                  <footer style="text-align: center; padding: 3px;">
-                    <p>© 2023 <a href="https://naimul011.github.io">Naimul Haque</a>.</p>
-                  </footer>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in-up">
+                    <h1>Naimul Haque</h1>
+                    <p class="subtitle">AI Researcher & Engineer</p>
+                    <p class="description">
+                        Pioneering research in Large Language Models, Computer Vision, and NLP. 
+                        Currently pursuing M.Sc. in Electrical Engineering at Alfred University, 
+                        with a focus on catastrophic forgetting in LLMs and power grid optimization.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#publications" class="btn btn-primary">
+                            <i class="fas fa-file-alt"></i> View Research
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Get in Touch
+                        </a>
+                    </div>
                 </div>
-              </div>
+                <div class="hero-image fade-in-up">
+                    <div class="profile-card">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23667eea'/%3E%3Ctext x='100' y='115' text-anchor='middle' fill='white' font-size='80' font-family='Arial'%3ENH%3C/text%3E%3C/svg%3E" alt="Naimul Haque" class="profile-image">
+                        <h3>Research Assistant</h3>
+                        <p>Alfred University</p>
+                        <p>M.Sc. Electrical Engineering</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/naimulhaque/" class="social-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/naimul011" class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" class="social-link" target="_blank">
+                                <i class="fas fa-graduation-cap"></i>
+                            </a>
+                            <a href="https://huggingface.co/naimul011" class="social-link" target="_blank">
+                                <i class="fas fa-robot"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Passionate about pushing the boundaries of AI and machine learning
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div style="background: var(--gradient); border-radius: var(--border-radius); height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Driving Innovation in AI Research</h3>
+                    <p>
+                        I'm a dedicated AI researcher currently pursuing my M.Sc. in Electrical Engineering at Alfred University, 
+                        specializing in artificial intelligence, computer vision, and natural language processing. My research focuses 
+                        on understanding and mitigating catastrophic forgetting in Large Language Models.
+                    </p>
+                    <p>
+                        With a strong background in teaching and research, I've published multiple papers in international conferences 
+                        and have created several open-source datasets. I'm also the founder of Gradmate.ai, an AI platform that assists 
+                        graduate students in their academic journey.
+                    </p>
+                    <p>
+                        Recently, I tied for 1st place in the 2024 Advizex AI Innovation Challenge, developing an AI sales bot 
+                        projected to increase ROI by 25%.
+                    </p>
+                    <div class="research-interests">
+                        <span class="interest-tag">Computer Vision</span>
+                        <span class="interest-tag">Natural Language Processing</span>
+                        <span class="interest-tag">Deep Learning</span>
+                        <span class="interest-tag">Large Language Models</span>
+                        <span class="interest-tag">Machine Learning</span>
+                        <span class="interest-tag">Reinforcement Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section scroll-reveal" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">
+                    A journey through research, teaching, and innovation
+                </p>
+            </div>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Graduate Research Assistant</h3>
+                            <p class="timeline-company">Alfred University</p>
+                        </div>
+                        <span class="timeline-date">Jan 2024 - Present</span>
+                    </div>
+                    <div class="timeline-description">
+                        <p>Conducting advanced research in AI and Deep Learning, focusing on catastrophic forgetting in Large Language Models (LLMs). 
+                        Setting up Advanced Power Distribution Management Lab with GE's ADMS and AEMS systems.</p>
+                        <ul>
+                            <li>Evaluating LLMs for sequential fine-tuning on NLP tasks</li>
+                            <li>Developing techniques to mitigate performance degradation</li>
+                            <li>Teaching Assistant for Python for Power Electronics</li>
+                            <li>Optimizing lab setups for AI applications in power industry</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Founder</h3>
+                            <p class="timeline-company">Gradmate.ai</p>
+                        </div>
+                        <span class="timeline-date">Jan 2024 - Present</span>
+                    </div>
+                    <div class="timeline-description">
+                        <p>Founded an AI platform assisting graduate students in finding programs and crafting application materials.</p>
+                        <ul>
+                            <li>Implemented LLM Agents orchestration using LangChain and LangGraph</li>
+                            <li>Utilized Groq and DeepSeek for efficient inference and reasoning</li>
+                            <li>Built comprehensive application assistance system</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Assistant Professor</h3>
+                            <p class="timeline-company">Uttara University</p>
+                        </div>
+                        <span class="timeline-date">Aug 2023 - Dec 2023</span>
+                    </div>
+                    <div class="timeline-description">
+                        <p>Conducted undergraduate classes in computer science and engineering.</p>
+                        <ul>
+                            <li>Discrete Mathematics</li>
+                            <li>Data Structure</li>
+                            <li>Structured Programming</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Lecturer & Lab Director</h3>
+                            <p class="timeline-company">Manarat International University & Cognition.AI</p>
+                        </div>
+                        <span class="timeline-date">Apr 2019 - Mar 2023</span>
+                    </div>
+                    <div class="timeline-description">
+                        <p>Taught advanced AI courses and supervised undergraduate research at Cognition.AI lab.</p>
+                        <ul>
+                            <li>Artificial Intelligence, Computer Vision, Neural Networks</li>
+                            <li>Pattern Recognition, Algorithms, Microprocessor Systems</li>
+                            <li>Supervised students on CV and NLP research projects</li>
+                            <li>Published multiple research papers with students</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Publications & Research</h2>
+                <p class="section-subtitle">
+                    Contributing to the advancement of AI and machine learning
+                </p>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <h3 class="publication-title">Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong></p>
+                    <p class="publication-venue">ACL ARR 2024 (Under Review)</p>
+                    <div class="publication-links">
+                        <a href="#" class="publication-link">Paper</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Iffat Labiba, Sadia Akter</p>
+                    <p class="publication-venue">International Conference on Pattern Recognition (ICPR)</p>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2309.13601" class="publication-link">ArXiv</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Meraj Serker, Tariq Bin Bashar</p>
+                    <p class="publication-venue">ICRIC 2023 International Conference on Recent Innovations in Computing</p>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2309.13676" class="publication-link">ArXiv</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Md. Bodrul, Abdullah, Towfiq, Mehorab</p>
+                    <p class="publication-venue">International Conference on Recent Progresses in Science, Engineering and Technology (ICRPSET-2022)</p>
+                    <div class="publication-links">
+                        <a href="https://ieeexplore.ieee.org/document/10188551" class="publication-link">IEEE</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</p>
+                    <p class="publication-venue">2022 4th International Conference on Sustainable Technologies for Industry 4.0 (STI)</p>
+                    <div class="publication-links">
+                        <a href="https://ieeexplore.ieee.org/document/10103289" class="publication-link">IEEE</a>
+                        <a href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" class="publication-link">Code</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Samin Shahriar Tokey</p>
+                    <p class="publication-venue">2019 22nd International Conference on Computer and Information Technology (ICCIT)</p>
+                    <div class="publication-links">
+                        <a href="https://ieeexplore.ieee.org/document/9038376" class="publication-link">IEEE</a>
+                        <a href="https://github.com/naimul011/Portrait-Colorization" class="publication-link">Code</a>
+                    </div>
+                </div>
             </div>
 
-            <hr>
-            <footer>
-              &nbsp;
-            </footer>
-          </div>
+            <!-- Datasets Section -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 2rem;">Published Datasets</h3>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <h3 class="publication-title">FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Abida Sultana</p>
+                    <p class="publication-venue">Zenodo, June 2023</p>
+                    <div class="publication-links">
+                        <a href="https://zenodo.org/record/8144361" class="publication-link">Download</a>
+                    </div>
+                </div>
 
-          <!-- JavaScript -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-          <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'] ],
-        processEscapes: true
-      }
-    });
-  </script>
-          <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-            </script>
-          <script type="text/javascript" src="/js/main.js"></script>
+                <div class="publication-card">
+                    <h3 class="publication-title">Bangla License Plate Dataset 2.5k</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Mirajul Islam, Afrose Tithy, Samira Islam</p>
+                    <p class="publication-venue">Zenodo, September 2022</p>
+                    <div class="publication-links">
+                        <a href="https://zenodo.org/record/7110401" class="publication-link">Download</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">Bangla Toxic Comments Database</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong>, Badrul</p>
+                    <p class="publication-venue">HuggingFace, June 2023</p>
+                    <div class="publication-links">
+                        <a href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" class="publication-link">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Published Models Section -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 2rem;">Published Models</h3>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <h3 class="publication-title">GlueOrca</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong></p>
+                    <p class="publication-venue">Fine-tuned on GLUE Benchmark Tasks (SST-2, MRPC, CoLA, MNLI)</p>
+                    <p style="margin: 1rem 0; color: var(--text-light);">
+                        Performance: Pretrained 0.61 | Forgetting Rate 0.35 | Learning Capability 1.05 | Training Performance 0.75
+                    </p>
+                    <div class="publication-links">
+                        <a href="https://huggingface.co/naimul011/GlueOrca" class="publication-link">HuggingFace</a>
+                    </div>
+                </div>
+
+                <div class="publication-card">
+                    <h3 class="publication-title">GlueQwen</h3>
+                    <p class="publication-authors"><strong>Naimul Haque</strong></p>
+                    <p class="publication-venue">Fine-tuned on GLUE Benchmark Tasks (SST-2, MRPC, CoLA, MNLI)</p>
+                    <p style="margin: 1rem 0; color: var(--text-light);">
+                        Performance: Pretrained 0.59 | Forgetting Rate 0.42 | Learning Capability 0.97 | Training Performance 0.73
+                    </p>
+                    <div class="publication-links">
+                        <a href="https://huggingface.co/naimul011/GlueQwen" class="publication-link">HuggingFace</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section scroll-reveal" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">
+                    Comprehensive skills spanning AI research, development, and deployment
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="skill-title">AI & Machine Learning</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">TensorFlow</span>
+                        <span class="skill-item">PyTorch</span>
+                        <span class="skill-item">Keras</span>
+                        <span class="skill-item">Scikit-learn</span>
+                        <span class="skill-item">OpenCV</span>
+                        <span class="skill-item">Hugging Face</span>
+                        <span class="skill-item">LangChain</span>
+                        <span class="skill-item">LangGraph</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="skill-title">Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">C/C++</span>
+                        <span class="skill-item">C#</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">MATLAB</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="skill-title">Computer Vision</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">YOLO</span>
+                        <span class="skill-item">CNNs</span>
+                        <span class="skill-item">Object Detection</span>
+                        <span class="skill-item">Image Processing</span>
+                        <span class="skill-item">GANs</span>
+                        <span class="skill-item">Image Captioning</span>
+                        <span class="skill-item">Facial Recognition</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="skill-title">Natural Language Processing</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Transformers</span>
+                        <span class="skill-item">BERT</span>
+                        <span class="skill-item">GPT</span>
+                        <span class="skill-item">LLMs</span>
+                        <span class="skill-item">Fine-tuning</span>
+                        <span class="skill-item">Text Classification</span>
+                        <span class="skill-item">Sentiment Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="skill-title">Tools & Platforms</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Google Cloud</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Jupyter</span>
+                        <span class="skill-item">Colab</span>
+                        <span class="skill-item">Unity</span>
+                        <span class="skill-item">LaTeX</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="skill-title">Certifications</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">EPRI Machine Vision</span>
+                        <span class="skill-item">Deep Learning</span>
+                        <span class="skill-item">22 PDHs</span>
+                        <span class="skill-item">Power Industry AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <p class="section-subtitle">
+                    Notable accomplishments and competitive successes
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="skill-title">Advizex AI Innovation Challenge</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">
+                        <strong>Tied for 1st Place (2024)</strong><br>
+                        Developed AI sales bot with Llama and LangChain, projected to increase ROI by 25%
+                    </p>
+                    <div class="skill-list">
+                        <span class="skill-item">AI Innovation</span>
+                        <span class="skill-item">LLM Applications</span>
+                        <span class="skill-item">Business Impact</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="skill-title">Media Recognition</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">
+                        <strong>Alfred University Press Release</strong><br>
+                        Featured for AI innovation and research contributions
+                    </p>
+                    <div class="skill-list">
+                        <span class="skill-item">Press Coverage</span>
+                        <span class="skill-item">Research Impact</span>
+                        <span class="skill-item">Academic Excellence</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="skill-title">Software Development Competitions</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">
+                        Multiple 1st and 2nd place finishes in university competitions
+                    </p>
+                    <div class="skill-list">
+                        <span class="skill-item">ADEX Engenius 2017</span>
+                        <span class="skill-item">AUST Competitions</span>
+                        <span class="skill-item">Team Leadership</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-kaggle"></i>
+                    </div>
+                    <h3 class="skill-title">Kaggle Competitions</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">
+                        <strong>Top 54% in Toxic Comments</strong><br>
+                        Active participant in AI/ML competitions
+                    </p>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Science</span>
+                        <span class="skill-item">ML Competitions</span>
+                        <span class="skill-item">Community Engagement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">Let's Connect</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                    Interested in collaboration, research opportunities, or just want to chat about AI?
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>nh16@alfred.edu</p>
+                        <p>naimul011@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Location</h4>
+                        <p>26 Church St</p>
+                        <p>Alfred, New York</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone</h4>
+                        <p>+1 (607) 454-1231</p>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/naimulhaque/" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/naimul011" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" class="social-link" target="_blank">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://huggingface.co/naimul011" class="social-link" target="_blank">
+                            <i class="fas fa-robot"></i>
+                        </a>
+                        <a href="https://www.kaggle.com/naimul314" class="social-link" target="_blank">
+                            <i class="fab fa-kaggle"></i>
+                        </a>
+                        <a href="https://www.researchgate.net/profile/Naimul-Haque-6" class="social-link" target="_blank">
+                            <i class="fas fa-flask"></i>
+                        </a>
+                        <a href="https://orcid.org/0009-0000-7816-7554" class="social-link" target="_blank">
+                            <i class="fab fa-orcid"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Naimul Haque. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Last updated: December 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.timeline-item, .publication-card, .skill-category').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--shadow)';
+            });
+        });
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero-text h1');
+        const titleText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < titleText.length) {
+                heroTitle.textContent += titleText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        // Start typing effect after a short delay
+        setTimeout(typeWriter, 1000);
+    </script>
 </body>
-
 </html>
