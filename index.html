@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naimul Haque - AI Researcher & Graduate Student</title>
-    <meta name="description" content="AI Researcher specializing in Computer Vision, NLP, and LLMs. Graduate Student at Alfred University.">
+    <title>Naimul Haque - PhD Student & AI Researcher</title>
+    <meta name="description" content="PhD Student specializing in Computer Vision, NLP, and LLMs. Graduate Research Assistant at Louisiana State University (LSU).">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #34495e;
@@ -28,20 +27,17 @@
             --border-color: #e9ecef;
             --shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
         body {
             font-family: 'Source Sans Pro', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--white);
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* Navigation */
         .navbar {
             background: var(--white);
@@ -51,26 +47,22 @@
             top: 0;
             z-index: 100;
         }
-
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-family: 'Crimson Text', serif;
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--primary-color);
         }
-
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
@@ -79,25 +71,21 @@
             border-bottom: 2px solid transparent;
             transition: border-color 0.3s ease;
         }
-
         .nav-links a:hover {
             border-bottom-color: var(--accent-color);
         }
-
         /* Header Section */
         .header {
             padding: 3rem 0;
             background: var(--bg-light);
             border-bottom: 1px solid var(--border-color);
         }
-
         .header-content {
             display: grid;
             grid-template-columns: 200px 1fr;
             gap: 3rem;
             align-items: start;
         }
-
         .profile-image {
             width: 180px;
             height: 180px;
@@ -105,7 +93,6 @@
             border: 1px solid var(--border-color);
             object-fit: cover;
         }
-
         .header-text h1 {
             font-family: 'Crimson Text', serif;
             font-size: 2.5rem;
@@ -113,26 +100,22 @@
             margin-bottom: 0.5rem;
             color: var(--primary-color);
         }
-
         .header-text .title {
             font-size: 1.2rem;
             color: var(--text-light);
             margin-bottom: 1rem;
         }
-
         .header-text .affiliation {
             font-size: 1rem;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
         }
-
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
-
         .contact-info span {
             display: flex;
             align-items: center;
@@ -140,28 +123,23 @@
             font-size: 0.95rem;
             color: var(--text-light);
         }
-
         .contact-info i {
             width: 16px;
             font-size: 0.9rem;
         }
-
         .social-links {
             display: flex;
             gap: 1rem;
         }
-
         .social-link {
             color: var(--text-light);
             text-decoration: none;
             font-size: 1.2rem;
             transition: color 0.3s ease;
         }
-
         .social-link:hover {
             color: var(--accent-color);
         }
-
         /* Main Content */
         .main-content {
             display: grid;
@@ -169,24 +147,20 @@
             gap: 3rem;
             padding: 3rem 0;
         }
-
         .content-left {
             display: flex;
             flex-direction: column;
             gap: 3rem;
         }
-
         .content-right {
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
-
         /* Section Styles */
         .section {
             margin-bottom: 2rem;
         }
-
         .section h2 {
             font-family: 'Crimson Text', serif;
             font-size: 1.8rem;
@@ -196,7 +170,6 @@
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 0.5rem;
         }
-
         .section h3 {
             font-family: 'Crimson Text', serif;
             font-size: 1.3rem;
@@ -204,20 +177,17 @@
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
-
         .section p {
             margin-bottom: 1rem;
             text-align: justify;
             line-height: 1.7;
         }
-
         /* Research Interests */
         .interests-list {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-
         .interest-tag {
             background: var(--bg-light);
             border: 1px solid var(--border-color);
@@ -226,42 +196,35 @@
             font-size: 0.9rem;
             color: var(--text-dark);
         }
-
         /* Publications */
         .publication {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
-
         .publication:last-child {
             border-bottom: none;
         }
-
         .publication-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--text-dark);
         }
-
         .publication-authors {
             font-style: italic;
             margin-bottom: 0.3rem;
             color: var(--text-light);
         }
-
         .publication-venue {
             color: var(--accent-color);
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
-
         .publication-links {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-
         .publication-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -269,82 +232,66 @@
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s ease;
         }
-
         .publication-link:hover {
             border-bottom-color: var(--accent-color);
         }
-
         /* Experience */
         .experience-item {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
-
         .experience-item:last-child {
             border-bottom: none;
         }
-
         .experience-header {
             margin-bottom: 1rem;
         }
-
         .experience-title {
             font-weight: 600;
             color: var(--text-dark);
         }
-
         .experience-organization {
             color: var(--accent-color);
             font-weight: 500;
         }
-
         .experience-date {
             color: var(--text-light);
             font-size: 0.9rem;
             margin-top: 0.2rem;
         }
-
         .experience-description ul {
             margin-top: 0.5rem;
             padding-left: 1.2rem;
         }
-
         .experience-description li {
             margin-bottom: 0.3rem;
             color: var(--text-light);
         }
-
         /* Skills & Education */
         .skills-list, .education-list {
             list-style: none;
         }
-
         .skills-list li, .education-list li {
             padding: 0.5rem 0;
             border-bottom: 1px solid var(--border-color);
             color: var(--text-dark);
         }
-
         .skills-list li:last-child, .education-list li:last-child {
             border-bottom: none;
         }
-
         .skill-category {
             font-weight: 600;
             color: var(--primary-color);
         }
-
         .education-degree {
             font-weight: 600;
             color: var(--primary-color);
         }
-
         .education-institution {
             color: var(--text-light);
             font-size: 0.9rem;
         }
-
         /* Achievements */
         .achievement-item {
             margin-bottom: 1rem;
@@ -353,18 +300,15 @@
             border-radius: 4px;
             border-left: 3px solid var(--accent-color);
         }
-
         .achievement-title {
             font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 0.3rem;
         }
-
         .achievement-description {
             color: var(--text-light);
             font-size: 0.9rem;
         }
-
         /* Footer */
         .footer {
             background: var(--bg-light);
@@ -374,38 +318,31 @@
             color: var(--text-light);
             font-size: 0.9rem;
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
             .header-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 2rem;
             }
-
             .main-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
             .header-text h1 {
                 font-size: 2rem;
             }
         }
-
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
             }
-
             .header {
                 padding: 2rem 0;
             }
-
             .main-content {
                 padding: 2rem 0;
             }
@@ -427,7 +364,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Header Section -->
     <section class="header">
         <div class="container">
@@ -437,15 +373,15 @@
                 </div>
                 <div class="header-text">
                     <h1>Naimul Haque</h1>
-                    <div class="title">AI Researcher & Graduate Student</div>
+                    <div class="title">PhD Student & AI Researcher</div>
                     <div class="affiliation">
-                        M.Sc. Electrical Engineering<br>
-                        Alfred University, New York
+                        Graduate Research Assistant, School of Electrical Engineering & Computer Science<br>
+                        Louisiana State University (LSU)
                     </div>
                     <div class="contact-info">
-                        <span><i class="fas fa-envelope"></i> nh16@alfred.edu</span>
-                        <span><i class="fas fa-phone"></i> +1 (607) 454-1231</span>
-                        <span><i class="fas fa-map-marker-alt"></i> Alfred, New York</span>
+                        <span><i class="fas fa-envelope"></i> nhaque4@lsu.edu</span>
+                        <span><i class="fas fa-envelope"></i> naimul011@gmail.com</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Baton Rouge, LA 70803</span>
                     </div>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/naimulhaque/" class="social-link" target="_blank">
@@ -468,7 +404,6 @@
             </div>
         </div>
     </section>
-
     <!-- Main Content -->
     <div class="container">
         <div class="main-content">
@@ -477,16 +412,12 @@
                 <section id="about" class="section">
                     <h2>About</h2>
                     <p>
-                        I am a Graduate Research Assistant at Alfred University, pursuing an M.Sc. in Electrical Engineering with a focus on artificial intelligence and machine learning. My research primarily explores catastrophic forgetting in Large Language Models (LLMs), computer vision applications, and natural language processing.
+                        I am a PhD student and Graduate Research Assistant in the School of Electrical Engineering & Computer Science at Louisiana State University (LSU).
                     </p>
                     <p>
-                        I am also the founder of Gradmate.ai, an AI platform that assists graduate students in finding programs and crafting application materials using advanced LLM orchestration techniques. My work has been published in several international conferences, and I have created multiple open-source datasets for the research community.
-                    </p>
-                    <p>
-                        Recently, I achieved recognition by tying for 1st place in the 2024 Advizex AI Innovation Challenge, where I developed an AI sales bot projected to increase ROI by 25%.
+                        My research explores Large Language Models (LLMs), computer vision, natural language processing, and AI applications. I founded Gradmate.ai, an AI platform for graduate admissions, and have published in international conferences while creating open-source datasets.
                     </p>
                 </section>
-
                 <!-- Research Interests -->
                 <section id="research" class="section">
                     <h2>Research Interests</h2>
@@ -501,7 +432,6 @@
                         <span class="interest-tag">Machine Learning</span>
                     </div>
                 </section>
-
                 <!-- Publications Section -->
                 <section id="publications" class="section">
                     <h2>Publications</h2>
@@ -513,7 +443,6 @@
                         <div class="publication-authors">Naimul Haque</div>
                         <div class="publication-venue">ACL ARR 2024 (Under Review)</div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</div>
                         <div class="publication-authors">Naimul Haque, Iffat Labiba, Sadia Akter</div>
@@ -522,7 +451,6 @@
                             <a href="https://arxiv.org/abs/2309.13601" class="publication-link">ArXiv</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</div>
                         <div class="publication-authors">Naimul Haque, Meraj Serker, Tariq Bin Bashar</div>
@@ -531,7 +459,6 @@
                             <a href="https://arxiv.org/abs/2309.13676" class="publication-link">ArXiv</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</div>
                         <div class="publication-authors">Naimul Haque, Md. Bodrul, Abdullah, Towfiq, Mehorab</div>
@@ -540,7 +467,6 @@
                             <a href="https://ieeexplore.ieee.org/document/10188551" class="publication-link">IEEE</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</div>
                         <div class="publication-authors">Naimul Haque, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</div>
@@ -550,7 +476,6 @@
                             <a href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" class="publication-link">Code</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</div>
                         <div class="publication-authors">Naimul Haque, Samin Shahriar Tokey</div>
@@ -560,7 +485,6 @@
                             <a href="https://github.com/naimul011/Portrait-Colorization" class="publication-link">Code</a>
                         </div>
                     </div>
-
                     <h3>Datasets & Models</h3>
                     
                     <div class="publication">
@@ -571,7 +495,6 @@
                             <a href="https://zenodo.org/record/8144361" class="publication-link">Download</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">Bangla Toxic Comments Database</div>
                         <div class="publication-authors">Naimul Haque, Badrul</div>
@@ -580,7 +503,6 @@
                             <a href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" class="publication-link">Dataset</a>
                         </div>
                     </div>
-
                     <div class="publication">
                         <div class="publication-title">GlueOrca & GlueQwen: Fine-tuned Models for GLUE Benchmark Tasks</div>
                         <div class="publication-authors">Naimul Haque</div>
@@ -591,7 +513,6 @@
                         </div>
                     </div>
                 </section>
-
                 <!-- Experience Section -->
                 <section id="experience" class="section">
                     <h2>Experience</h2>
@@ -599,19 +520,17 @@
                     <div class="experience-item">
                         <div class="experience-header">
                             <div class="experience-title">Graduate Research Assistant</div>
-                            <div class="experience-organization">Alfred University</div>
-                            <div class="experience-date">January 2024 - Present</div>
+                            <div class="experience-organization">Louisiana State University (LSU)</div>
+                            <div class="experience-date">2025 - Present</div>
                         </div>
                         <div class="experience-description">
-                            <p>Conducting research in AI and Deep Learning, focusing on catastrophic forgetting in Large Language Models. Setting up Advanced Power Distribution Management Lab with GE's ADMS and AEMS systems.</p>
+                            <p>Conducting research in AI and Deep Learning, focusing on catastrophic forgetting in Large Language Models.</p>
                             <ul>
                                 <li>Evaluating LLMs for sequential fine-tuning on NLP tasks</li>
                                 <li>Developing techniques to mitigate performance degradation</li>
-                                <li>Teaching Assistant for Python for Power Electronics</li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="experience-item">
                         <div class="experience-header">
                             <div class="experience-title">Founder & CEO</div>
@@ -626,7 +545,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="experience-item">
                         <div class="experience-header">
                             <div class="experience-title">Assistant Professor</div>
@@ -640,7 +558,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="experience-item">
                         <div class="experience-header">
                             <div class="experience-title">Lecturer & Lab Director</div>
@@ -658,15 +575,14 @@
                     </div>
                 </section>
             </div>
-
             <div class="content-right">
                 <!-- Education -->
                 <section class="section">
                     <h2>Education</h2>
                     <ul class="education-list">
                         <li>
-                            <div class="education-degree">M.Sc. Electrical Engineering</div>
-                            <div class="education-institution">Alfred University, NY (2024-Present)</div>
+                            <div class="education-degree">Ph.D. Electrical Engineering & Computer Science</div>
+                            <div class="education-institution">Louisiana State University (LSU), Baton Rouge, LA (2025-Present)</div>
                         </li>
                         <li>
                             <div class="education-degree">B.Sc. Computer Science & Engineering</div>
@@ -674,7 +590,6 @@
                         </li>
                     </ul>
                 </section>
-
                 <!-- Technical Skills -->
                 <section class="section">
                     <h2>Technical Skills</h2>
@@ -686,7 +601,6 @@
                         <li><span class="skill-category">Tools:</span> Git, Docker, Google Cloud, LaTeX</li>
                     </ul>
                 </section>
-
                 <!-- Awards & Recognition -->
                 <section class="section">
                     <h2>Awards & Recognition</h2>
@@ -703,26 +617,22 @@
                         <div class="achievement-description">1st and 2nd place finishes in university competitions</div>
                     </div>
                 </section>
-
                 <!-- Current Projects -->
                 <section class="section">
                     <h2>Current Projects</h2>
                     <p><strong>Catastrophic Forgetting in LLMs:</strong> Investigating performance degradation when LLMs are sequentially fine-tuned on different NLP tasks.</p>
-                    <p><strong>AI Grid Optimization:</strong> Developing AI-driven solutions for power distribution management using GE's ADMS systems.</p>
                     <p><strong>Gradmate.ai Platform:</strong> Building comprehensive AI assistance for graduate school applications.</p>
                 </section>
             </div>
         </div>
     </div>
-
     <!-- Footer -->
     <footer id="contact" class="footer">
         <div class="container">
-            <p>&copy; 2024 Naimul Haque. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">Last updated: December 2024</p>
+            <p>© 2026 Naimul Haque. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Last updated: February 2026</p>
         </div>
     </footer>
-
     <script>
         // Simple smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -737,7 +647,6 @@
                 }
             });
         });
-
         // Simple active link highlighting
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
@@ -751,7 +660,6 @@
                     current = section.getAttribute('id');
                 }
             });
-
             navLinks.forEach(link => {
                 link.style.borderBottomColor = 'transparent';
                 if (link.getAttribute('href') === `#${current}`) {
