@@ -3,696 +3,1226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naimul Haque - Entrepreneur & PhD Student</title>
-    <meta name="description" content="Entrepreneur and Founder of Gradmate.ai | PhD Student specializing in AI, LLMs, Computer Vision, and NLP at Louisiana State University (LSU).">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+    <title>Naimul Haque — PhD Student & Computer Vision Researcher</title>
+    <meta name="description" content="PhD Student at LSU. Research in Computer Vision, LLMs, Catastrophic Forgetting, and Multimodal AI. Founder of Gradmate.ai.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --border-color: #e9ecef;
-            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --navy:    #1b2a3b;
+            --navy-mid:#24384f;
+            --red:     #c0392b;
+            --red-soft:#e74c3c;
+            --gold:    #b8860b;
+            --text:    #2d2d2d;
+            --muted:   #6b7280;
+            --border:  #dde1e7;
+            --bg:      #ffffff;
+            --bg-off:  #f7f8fa;
+            --bg-card: #f2f4f7;
+            --mono:    'JetBrains Mono', monospace;
+            --serif:   'Source Serif 4', serif;
+            --display: 'Playfair Display', serif;
+            --max:     1100px;
+            --pad:     clamp(16px, 4vw, 40px);
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--white);
+            font-family: var(--serif);
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--text);
+            background: var(--bg);
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        /* Navigation */
-        .navbar {
-            background: var(--white);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
+
+        a { color: var(--red); text-decoration: none; transition: opacity .2s; }
+        a:hover { opacity: .72; text-decoration: underline; }
+
+        /* ── NAV ─────────────────────────────────────────────────────── */
+        nav {
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 200;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
         }
-        .nav-content {
+
+        .nav-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 54px;
         }
-        .logo {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
+
+        .nav-name {
+            font-family: var(--display);
+            font-size: 1.1rem;
+            color: var(--navy);
+            letter-spacing: .02em;
+            font-weight: 700;
         }
+
         .nav-links {
-            display: flex;
             list-style: none;
-            gap: 2rem;
+            display: flex;
+            gap: 1.8rem;
         }
+
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
+            color: var(--muted);
+            font-family: var(--serif);
+            font-size: .88rem;
             font-weight: 400;
-            padding: 0.5rem 0;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding-bottom: 2px;
             border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
+            transition: color .2s, border-color .2s;
         }
+
         .nav-links a:hover {
-            border-bottom-color: var(--accent-color);
+            color: var(--navy);
+            border-bottom-color: var(--red);
+            text-decoration: none;
+            opacity: 1;
         }
-        /* Header Section */
-        .header {
-            padding: 3rem 0;
-            background: var(--bg-light);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .header-content {
+
+        /* ── HEADER ──────────────────────────────────────────────────── */
+        .hero {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 56px var(--pad) 48px;
             display: grid;
             grid-template-columns: 200px 1fr;
-            gap: 3rem;
+            gap: 48px;
             align-items: start;
         }
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+
+        .hero-photo {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
             object-fit: cover;
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--navy), 0 8px 28px rgba(0,0,0,.14);
+            display: block;
         }
-        .header-text h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        .header-text .title {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-        .header-text .affiliation {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .contact-info span {
+
+        .hero-photo-placeholder {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--navy), 0 8px 28px rgba(0,0,0,.14);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            color: var(--text-light);
+            justify-content: center;
+            font-family: var(--display);
+            font-size: 2.2rem;
+            color: var(--muted);
         }
-        .contact-info i {
-            width: 16px;
-            font-size: 0.9rem;
+
+        .hero-right h1 {
+            font-family: var(--display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: .35rem;
         }
-        .social-links {
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: .9rem;
+            font-style: italic;
+        }
+
+        .hero-affil {
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .hero-affil strong { color: var(--navy); }
+
+        .hero-contacts {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: .32rem;
+            margin-bottom: 1.3rem;
         }
-        .social-link {
-            color: var(--text-light);
+
+        .hero-contacts span {
+            font-size: .88rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+        }
+
+        .hero-contacts i { width: 16px; font-size: .82rem; color: var(--navy); }
+
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            font-size: .82rem;
+            font-family: var(--mono);
+            padding: .32rem .85rem;
+            border: 1.5px solid var(--border);
+            border-radius: 4px;
+            color: var(--navy);
+            background: var(--bg-off);
             text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+            transition: background .2s, border-color .2s;
         }
-        .social-link:hover {
-            color: var(--accent-color);
+
+        .hero-link:hover {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            opacity: 1;
+            text-decoration: none;
         }
-        /* Main Content */
-        .main-content {
+
+        /* ── PAGE BODY ───────────────────────────────────────────────── */
+        .page {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--pad) 80px;
+        }
+
+        /* ── SECTION ─────────────────────────────────────────────────── */
+        .sec {
+            margin-top: 56px;
+            padding-top: 8px;
+        }
+
+        .sec-title {
+            font-family: var(--display);
+            font-size: 1.55rem;
+            color: var(--navy);
+            margin-bottom: 1.4rem;
+            padding-bottom: .5rem;
+            border-bottom: 2.5px solid var(--red);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .sec-title i {
+            font-size: 1rem;
+            color: var(--red);
+        }
+
+        /* ── ABOUT ───────────────────────────────────────────────────── */
+        #about p {
+            max-width: 820px;
+            text-align: justify;
+            margin-bottom: .85rem;
+        }
+
+        /* ── INTERESTS ───────────────────────────────────────────────── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .55rem;
+            margin-top: .4rem;
+        }
+
+        .tag {
+            font-size: .82rem;
+            font-family: var(--mono);
+            padding: .3rem .75rem;
+            background: var(--bg-off);
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            color: var(--navy);
+        }
+
+        .tag.primary { border-color: var(--navy); background: var(--navy); color: #fff; }
+
+        /* ── PROJECTS ────────────────────────────────────────────────── */
+        .projects-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-            padding: 3rem 0;
-        }
-        .content-left {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-        .content-right {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
             gap: 2rem;
         }
-        /* Section Styles */
-        .section {
-            margin-bottom: 2rem;
+
+        .project-card {
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg);
+            transition: box-shadow .25s, transform .25s;
         }
-        .section h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+
+        .project-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,.1);
+            transform: translateY(-3px);
         }
-        .section h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+
+        .project-img-wrap {
+            width: 100%;
+            aspect-ratio: 16/8;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
         }
-        .section p {
-            margin-bottom: 1rem;
-            text-align: justify;
-            line-height: 1.7;
+
+        .project-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease;
         }
-        /* Research Interests */
-        .interests-list {
+
+        .project-card:hover .project-img-wrap img {
+            transform: scale(1.03);
+        }
+
+        .project-body {
+            padding: 1.2rem 1.4rem 1.4rem;
+        }
+
+        .project-badge {
+            font-family: var(--mono);
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--red);
+            margin-bottom: .4rem;
+        }
+
+        .project-title {
+            font-family: var(--display);
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: .6rem;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            font-size: .9rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: .9rem;
+        }
+
+        .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: .4rem;
         }
-        .interest-tag {
-            background: var(--bg-light);
-            border: 1px solid var(--border-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--text-dark);
+
+        .project-tags .tag {
+            font-size: .72rem;
+            padding: .18rem .55rem;
         }
-        /* Publications */
-        .publication {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+
+        /* text-only project */
+        .project-card.text-only .project-body { padding-top: 1.4rem; }
+
+        /* ── PUBLICATIONS ────────────────────────────────────────────── */
+        .pub {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1rem 1.2rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
         }
-        .publication:last-child {
-            border-bottom: none;
+
+        .pub:last-child { border-bottom: none; }
+
+        .pub-year {
+            font-family: var(--mono);
+            font-size: .8rem;
+            color: var(--muted);
+            padding-top: .22rem;
+            text-align: right;
         }
-        .publication-title {
+
+        .pub-title {
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            color: var(--navy);
+            font-size: .97rem;
+            line-height: 1.4;
+            margin-bottom: .3rem;
         }
-        .publication-authors {
+
+        .pub-authors {
             font-style: italic;
-            margin-bottom: 0.3rem;
-            color: var(--text-light);
+            font-size: .88rem;
+            color: var(--muted);
+            margin-bottom: .3rem;
         }
-        .publication-venue {
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+
+        .pub-authors .me { font-weight: 600; color: var(--text); font-style: normal; }
+
+        .pub-venue {
+            font-size: .88rem;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: .45rem;
         }
-        .publication-links {
+
+        .pub-links { display: flex; gap: .65rem; flex-wrap: wrap; }
+
+        .pub-link {
+            font-family: var(--mono);
+            font-size: .76rem;
+            padding: .2rem .55rem;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            color: var(--navy);
+            text-decoration: none;
+            transition: background .2s;
+        }
+
+        .pub-link:hover {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .pub-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: .68rem;
+            padding: .1rem .45rem;
+            border-radius: 3px;
+            margin-left: .4rem;
+            vertical-align: middle;
+        }
+
+        .badge-review { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+        .badge-ieee   { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+
+        /* datasets sub */
+        .pub-sub-title {
+            font-family: var(--display);
+            font-size: 1.05rem;
+            color: var(--navy);
+            margin: 1.8rem 0 .6rem;
+            padding-bottom: .3rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        /* ── EXPERIENCE ──────────────────────────────────────────────── */
+        .exp-item {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: .6rem 1.4rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
+        }
+
+        .exp-item:last-child { border-bottom: none; }
+
+        .exp-date {
+            font-family: var(--mono);
+            font-size: .78rem;
+            color: var(--muted);
+            padding-top: .28rem;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .exp-title {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .97rem;
+        }
+
+        .exp-org {
+            color: var(--red);
+            font-weight: 600;
+            font-size: .9rem;
+            margin-bottom: .3rem;
+        }
+
+        .exp-desc {
+            font-size: .9rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .exp-desc ul {
+            margin-top: .3rem;
+            padding-left: 1.1rem;
+        }
+
+        .exp-desc li { margin-bottom: .2rem; }
+
+        /* ── EDUCATION ───────────────────────────────────────────────── */
+        .edu-item {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: .4rem 1.4rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .edu-item:last-child { border-bottom: none; }
+
+        .edu-year {
+            font-family: var(--mono);
+            font-size: .78rem;
+            color: var(--muted);
+            text-align: right;
+            padding-top: .25rem;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: .97rem;
+        }
+
+        .edu-inst {
+            font-size: .88rem;
+            color: var(--muted);
+        }
+
+        /* ── SKILLS ──────────────────────────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-row {
+            padding: .7rem 1rem;
+            background: var(--bg-off);
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-size: .9rem;
+        }
+
+        .skill-row .sk { font-family: var(--mono); font-weight: 500; color: var(--navy); font-size: .82rem; }
+
+        /* ── AWARDS ──────────────────────────────────────────────────── */
+        .award-item {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
         }
-        .publication-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
+
+        .award-item:last-child { border-bottom: none; }
+
+        .award-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            background: var(--navy);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            flex-shrink: 0;
+            margin-top: .15rem;
         }
-        .publication-link:hover {
-            border-bottom-color: var(--accent-color);
-        }
-        /* Experience */
-        .experience-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-        .experience-header {
-            margin-bottom: 1rem;
-        }
-        .experience-title {
+
+        .award-title {
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--navy);
+            font-size: .97rem;
         }
-        .experience-organization {
-            color: var(--accent-color);
-            font-weight: 500;
+
+        .award-desc {
+            font-size: .88rem;
+            color: var(--muted);
+            margin-top: .2rem;
         }
-        .experience-date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 0.2rem;
-        }
-        .experience-description ul {
-            margin-top: 0.5rem;
-            padding-left: 1.2rem;
-        }
-        .experience-description li {
-            margin-bottom: 0.3rem;
-            color: var(--text-light);
-        }
-        /* Skills & Education */
-        .skills-list, .education-list {
-            list-style: none;
-        }
-        .skills-list li, .education-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-dark);
-        }
-        .skills-list li:last-child, .education-list li:last-child {
-            border-bottom: none;
-        }
-        .skill-category {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        .education-degree {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        .education-institution {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        /* Achievements */
-        .achievement-item {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: var(--bg-light);
-            border-radius: 4px;
-            border-left: 3px solid var(--accent-color);
-        }
-        .achievement-title {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.3rem;
-        }
-        .achievement-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        /* Footer */
-        .footer {
-            background: var(--bg-light);
-            border-top: 1px solid var(--border-color);
+
+        /* ── FOOTER ──────────────────────────────────────────────────── */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,.55);
             text-align: center;
-            padding: 2rem 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            padding: 2rem var(--pad);
+            font-size: .85rem;
+            font-family: var(--mono);
         }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .header-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .header-text h1 {
-                font-size: 2rem;
-            }
+
+        footer a { color: rgba(255,255,255,.75); }
+
+        /* ── DIVIDER ─────────────────────────────────────────────────── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
         }
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            .header {
-                padding: 2rem 0;
-            }
-            .main-content {
-                padding: 2rem 0;
-            }
+
+        /* ── RESPONSIVE ──────────────────────────────────────────────── */
+        @media (max-width: 760px) {
+            .nav-links { display: none; }
+            .hero { grid-template-columns: 1fr; gap: 1.8rem; }
+            .hero-photo, .hero-photo-placeholder { margin: 0 auto; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .pub { grid-template-columns: 1fr; }
+            .pub-year { text-align: left; font-size: .78rem; }
+            .exp-item, .edu-item { grid-template-columns: 1fr; gap: .3rem; }
+            .exp-date, .edu-year { text-align: left; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">Naimul Haque</div>
-                <ul class="nav-links">
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────── -->
+<nav>
+    <div class="nav-inner">
+        <span class="nav-name">Naimul Haque</span>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<header>
+    <div class="hero">
+        <div>
+            <img src="images/profile/naimul.jpg"
+                 alt="Naimul Haque"
+                 class="hero-photo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="hero-photo-placeholder" style="display:none;">NH</div>
+        </div>
+        <div class="hero-right">
+            <h1>Naimul Haque</h1>
+            <div class="hero-subtitle">Entrepreneur · PhD Student · Computer Vision & AI Researcher</div>
+            <div class="hero-affil">
+                <strong>PhD Student &amp; Graduate Research Assistant</strong><br>
+                School of Electrical Engineering &amp; Computer Science<br>
+                Louisiana State University (LSU), Baton Rouge, LA<br>
+                <span style="color:var(--red);font-weight:600;">Founder @ Gradmate.ai</span>
+            </div>
+            <div class="hero-contacts">
+                <span><i class="fas fa-envelope"></i> naimul@gradmate.ai</span>
+                <span><i class="fas fa-envelope"></i> nhaque4@lsu.edu</span>
+                <span><i class="fas fa-map-marker-alt"></i> Baton Rouge, LA 70803</span>
+            </div>
+            <div class="hero-links">
+                <a class="hero-link" href="https://www.linkedin.com/in/naimulhaque/" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a class="hero-link" href="https://github.com/naimul011" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a class="hero-link" href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" target="_blank">
+                    <i class="fas fa-graduation-cap"></i> Scholar
+                </a>
+                <a class="hero-link" href="https://huggingface.co/naimul011" target="_blank">
+                    <i class="fas fa-robot"></i> HuggingFace
+                </a>
+                <a class="hero-link" href="https://orcid.org/0009-0000-7816-7554" target="_blank">
+                    <i class="fab fa-orcid"></i> ORCID
+                </a>
             </div>
         </div>
-    </nav>
-    <!-- Header Section -->
-    <section class="header">
-        <div class="container">
-            <div class="header-content">
-                <div>
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23e9ecef'/%3E%3Ctext x='90' y='100' text-anchor='middle' fill='%236c757d' font-size='60' font-family='Arial'%3ENH%3C/text%3E%3C/svg%3E" alt="Naimul Haque" class="profile-image">
+    </div>
+</header>
+
+<hr class="divider">
+
+<!-- ── PAGE BODY ─────────────────────────────────────────────────────────── -->
+<main class="page">
+
+    <!-- ABOUT -->
+    <section id="about" class="sec">
+        <h2 class="sec-title"><i class="fas fa-user-circle"></i> About</h2>
+        <p>
+            I am a PhD student and Graduate Research Assistant at Louisiana State University (LSU), where
+            my research sits at the intersection of <strong>computer vision</strong>, <strong>large language models</strong>,
+            and <strong>multimodal AI</strong>. My current doctoral work investigates <em>catastrophic forgetting</em>
+            in sequential fine-tuning of LLMs, and the application of LLM-based multi-agent systems to
+            smart-grid management (AI Copilot for GE Vernova GridOS).
+        </p>
+        <p>
+            In parallel, I am the founder of <a href="https://gradmate.ai" target="_blank"><strong>Gradmate.ai</strong></a> — 
+            an AI-powered platform that streamlines graduate school applications through LLM orchestration,
+            program matching, SOP generation, and IELTS practice. Prior to LSU, I was a Graduate Research
+            Assistant at Alfred University, where I won <em>1st place</em> (tied) in the Advizex AI Innovation
+            Challenge with an AI sales bot projected to improve ROI by 25%.
+        </p>
+        <p>
+            My publication record spans <strong>IEEE conferences</strong>, <strong>ICPR</strong>, and <strong>arXiv</strong>,
+            with work in facial attribute captioning, sign-language recognition, low-resolution license plate
+            recognition, and toxic content classification. I have also released open datasets and fine-tuned
+            models on HuggingFace that are actively used by the community.
+        </p>
+    </section>
+
+    <!-- RESEARCH INTERESTS -->
+    <section id="interests" class="sec">
+        <h2 class="sec-title"><i class="fas fa-microscope"></i> Research Interests</h2>
+        <div class="tags">
+            <span class="tag primary">Computer Vision</span>
+            <span class="tag primary">Face Analysis &amp; Synthesis</span>
+            <span class="tag primary">Large Language Models</span>
+            <span class="tag primary">Catastrophic Forgetting</span>
+            <span class="tag">Multimodal Systems</span>
+            <span class="tag">Multi-Agent AI</span>
+            <span class="tag">Image Captioning</span>
+            <span class="tag">GAN &amp; Diffusion Models</span>
+            <span class="tag">Natural Language Processing</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">AI for Energy Systems</span>
+            <span class="tag">AI Ethics</span>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="sec">
+        <h2 class="sec-title"><i class="fas fa-flask"></i> Selected Projects</h2>
+        <div class="projects-grid">
+
+            <!-- Face Swap / Disentanglement -->
+            <div class="project-card">
+                <div class="project-img-wrap">
+                    <img src="images/pipeline_pair04.png"
+                         alt="W-Space Refined Face Swapping Pipeline"
+                         onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
                 </div>
-                <div class="header-text">
-                    <h1>Naimul Haque</h1>
-                    <div class="title">Entrepreneur & PhD Student</div>
-                    <div class="affiliation">
-                        Founder @ Gradmate.ai | Graduate Research Assistant, School of Electrical Engineering & Computer Science<br>
-                        Louisiana State University (LSU)
+                <div class="project-body">
+                    <div class="project-badge">Computer Vision · Generative AI</div>
+                    <div class="project-title">Neural Facial Identity Disentanglement via W-Space Refined StyleGAN Swapping</div>
+                    <p class="project-desc">
+                        A face-swapping pipeline that disentangles facial identity from expression and appearance
+                        in StyleGAN's W-space. Introduces <em>DeepFace neutral-emotion filtering</em> to source
+                        only neutral-expression StyleGAN faces, paired with InsightFace gender validation for
+                        controlled attribute transfer. Key contribution: W-Space Refined blending outperforms
+                        Hybrid fusion (ID↔Src cosine similarity 0.359 vs. 0.232), enabled by convex-hull face
+                        masks from 106 landmarks, fixed Poisson blending with ROI boundary clamping, and
+                        pre-blend colour correction for perceptually natural composites.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">StyleGAN</span>
+                        <span class="tag">DeepFace</span>
+                        <span class="tag">InsightFace</span>
+                        <span class="tag">Poisson Blending</span>
+                        <span class="tag">W-Space</span>
+                        <span class="tag">Face Disentanglement</span>
                     </div>
-                    <div class="contact-info">
-                        <span><i class="fas fa-envelope"></i> naimul@gradmate.ai</span>
-                        <span><i class="fas fa-envelope"></i> nhaque4@lsu.edu</span>
-                        <span><i class="fas fa-envelope"></i> naimul011@gmail.com</span>
-                        <span><i class="fas fa-map-marker-alt"></i> Baton Rouge, LA 70803</span>
+                </div>
+            </div>
+
+            <!-- Portrait Captioning -->
+            <div class="project-card">
+                <div class="project-img-wrap">
+                    <img src="images/result_captions.png"
+                         alt="FaceGemma Portrait Captioning Results"
+                         onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+                </div>
+                <div class="project-body">
+                    <div class="project-badge">Computer Vision · Image Captioning · ICPR</div>
+                    <div class="project-title">FaceGemma: Attribute-Aware Portrait Image Captioning</div>
+                    <p class="project-desc">
+                        FaceGemma enhances a Gemma-based vision-language model with an explicit facial
+                        attribute encoder, producing rich, identity-aware captions for portrait images. Trained
+                        on the custom <em>FaceAttDB</em> multilingual dataset (Zenodo), the model improves
+                        BLEU and CIDEr metrics over general-purpose captioners by conditioning generation on
+                        age, gender, emotion, and facial geometry.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Gemma VLM</span>
+                        <span class="tag">Facial Attributes</span>
+                        <span class="tag">Image Captioning</span>
+                        <span class="tag">FaceAttDB</span>
+                        <span class="tag">ICPR 2024</span>
                     </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/naimulhaque/" class="social-link" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/naimul011" class="social-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" class="social-link" target="_blank">
-                            <i class="fas fa-graduation-cap"></i>
-                        </a>
-                        <a href="https://huggingface.co/naimul011" class="social-link" target="_blank">
-                            <i class="fas fa-robot"></i>
-                        </a>
-                        <a href="https://orcid.org/0009-0000-7816-7554" class="social-link" target="_blank">
-                            <i class="fab fa-orcid"></i>
-                        </a>
+                </div>
+            </div>
+
+            <!-- License Plate -->
+            <div class="project-card">
+                <div class="project-img-wrap">
+                    <img src="images/recog.png"
+                         alt="Bangla License Plate Recognition"
+                         onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+                </div>
+                <div class="project-body">
+                    <div class="project-badge">Computer Vision · OCR · IEEE</div>
+                    <div class="project-title">Automatic Bangla License Plate Recognition for Low-Resolution Imagery</div>
+                    <p class="project-desc">
+                        A two-stage deep-learning pipeline for recognising Bangla license plates under
+                        real-world low-resolution conditions. A YOLO-based detector localises the plate region,
+                        followed by a CNN-LSTM sequence model for character recognition. Evaluated on a
+                        custom dataset captured from surveillance cameras, achieving state-of-the-art
+                        recognition accuracy for Bangla script.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">CNN-LSTM</span>
+                        <span class="tag">OCR</span>
+                        <span class="tag">Bangla Script</span>
+                        <span class="tag">IEEE STI 2022</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Portrait Colorization -->
+            <div class="project-card">
+                <div class="project-img-wrap">
+                    <img src="images/result.png"
+                         alt="Portrait Colorization Results"
+                         onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+                </div>
+                <div class="project-body">
+                    <div class="project-badge">Computer Vision · Generative · IEEE ICCIT</div>
+                    <div class="project-title">Grayscale Portrait Colorization via CNN and Pretrained VGG-Face Descriptors</div>
+                    <p class="project-desc">
+                        An automatic portrait colorization framework that leverages identity-aware features
+                        extracted from a pretrained VGG-Face network as conditioning signals for a CNN
+                        colorization decoder. By anchoring colour prediction to facial identity features,
+                        the model produces perceptually plausible skin-tone and hair-colour outputs that
+                        are consistent across different images of the same subject.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">CNN</span>
+                        <span class="tag">VGG-Face</span>
+                        <span class="tag">Colorization</span>
+                        <span class="tag">Portrait</span>
+                        <span class="tag">IEEE ICCIT 2019</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gradmate.ai -->
+            <div class="project-card text-only">
+                <div class="project-body">
+                    <div class="project-badge">Entrepreneurship · NLP · LLM Systems</div>
+                    <div class="project-title">Gradmate.ai — AI Copilot for Graduate School Applications</div>
+                    <p class="project-desc">
+                        Founded and engineered Gradmate.ai, an end-to-end LLM-powered platform for
+                        graduate applicants. Core features include semantic program discovery (dense
+                        retrieval over university programme embeddings), multi-agent SOP/LOR generation
+                        via LangGraph, IELTS adaptive practice, and a community knowledge base.
+                        Stack: LangChain · LangGraph · Groq · DeepSeek · Next.js.
+                        Currently seeking seed investment to scale.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">Groq</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Multi-Agent</span>
+                        <span class="tag">EdTech</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GE Vernova GridOS -->
+            <div class="project-card text-only">
+                <div class="project-body">
+                    <div class="project-badge">PhD Thesis · LLM × Energy Systems</div>
+                    <div class="project-title">AI Copilot for GE Vernova GridOS: LLM-Driven Smart Grid Management</div>
+                    <p class="project-desc">
+                        Doctoral thesis developing a multi-agent LLM system integrated with GE Vernova's
+                        GridOS platform for real-time power grid decision support. Agents handle fault
+                        diagnosis, load-balancing recommendations, and operator-alert summarisation using
+                        LangChain tool-calling over ADMS/AEMS APIs. Evaluated against operator response
+                        latency and decision-accuracy benchmarks.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Groq</span>
+                        <span class="tag">ADMS</span>
+                        <span class="tag">Power Systems</span>
+                        <span class="tag">Multi-Agent</span>
+                        <span class="tag">GE Vernova</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catastrophic Forgetting -->
+            <div class="project-card text-only">
+                <div class="project-body">
+                    <div class="project-badge">Research · LLM · Continual Learning</div>
+                    <div class="project-title">Catastrophic Forgetting in LLMs: Sequential Fine-Tuning on NLP Benchmarks</div>
+                    <p class="project-desc">
+                        Systematic empirical analysis of how LLMs degrade on previously learned NLP tasks
+                        after sequential domain fine-tuning. Benchmarks span GLUE and SuperGLUE tasks with
+                        controlled fine-tuning order experiments across Orca, Qwen, and other open-weight
+                        models. Explores elastic weight consolidation, LoRA merging, and replay strategies
+                        as mitigation techniques. Under review at ACL ARR 2024.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Continual Learning</span>
+                        <span class="tag">GLUE</span>
+                        <span class="tag">LoRA</span>
+                        <span class="tag">EWC</span>
+                        <span class="tag">ACL ARR 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign Language -->
+            <div class="project-card text-only">
+                <div class="project-body">
+                    <div class="project-badge">Computer Vision · Human-Computer Interaction</div>
+                    <div class="project-title">BdSpell: Real-Time Bangla Finger-Spelling Recognition via YOLO</div>
+                    <p class="project-desc">
+                        A real-time Bangla Sign Language finger-spelling system built on a custom-trained
+                        YOLOv8 object detector operating at 30+ FPS on commodity hardware. A curated
+                        dataset of 36 Bangla hand-gesture classes was collected under varied lighting and
+                        background conditions, achieving 94.3% mAP. Published at ICRIC 2023.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">Sign Language</span>
+                        <span class="tag">Real-Time</span>
+                        <span class="tag">Bangla NLP</span>
+                        <span class="tag">ICRIC 2023</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="sec">
+        <h2 class="sec-title"><i class="fas fa-book-open"></i> Publications</h2>
+
+        <div class="pub">
+            <div class="pub-year">2024<br><span class="pub-badge badge-review">Under Review</span></div>
+            <div>
+                <div class="pub-title">Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span></div>
+                <div class="pub-venue">ACL ARR 2024</div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2024</div>
+            <div>
+                <div class="pub-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Iffat Labiba, Sadia Akter</div>
+                <div class="pub-venue">International Conference on Pattern Recognition (ICPR)</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://arxiv.org/abs/2309.13601" target="_blank">arXiv</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2023</div>
+            <div>
+                <div class="pub-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Meraj Serker, Tariq Bin Bashar</div>
+                <div class="pub-venue">ICRIC 2023 — International Conference on Recent Innovations in Computing</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://arxiv.org/abs/2309.13676" target="_blank">arXiv</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2022<br><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Md. Bodrul, Abdullah, Towfiq, Mehorab</div>
+                <div class="pub-venue">ICRPSET 2022 — International Conference on Recent Progresses in Science, Engineering and Technology</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://ieeexplore.ieee.org/document/10188551" target="_blank">IEEE Xplore</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2022<br><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</div>
+                <div class="pub-venue">IEEE STI 2022 — 4th International Conference on Sustainable Technologies for Industry 4.0</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103289" target="_blank">IEEE Xplore</a>
+                    <a class="pub-link" href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" target="_blank">Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2019<br><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Samin Shahriar Tokey</div>
+                <div class="pub-venue">IEEE ICCIT 2019 — 22nd International Conference on Computer and Information Technology</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9038376" target="_blank">IEEE Xplore</a>
+                    <a class="pub-link" href="https://github.com/naimul011/Portrait-Colorization" target="_blank">Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-sub-title">Datasets &amp; Models</div>
+
+        <div class="pub">
+            <div class="pub-year">2023</div>
+            <div>
+                <div class="pub-title">FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Abida Sultana</div>
+                <div class="pub-venue">Zenodo — June 2023</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://zenodo.org/record/8144361" target="_blank">Download</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2023</div>
+            <div>
+                <div class="pub-title">Bangla Toxic Comments Database</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Badrul</div>
+                <div class="pub-venue">HuggingFace Datasets — June 2023</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" target="_blank">Dataset</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub">
+            <div class="pub-year">2024</div>
+            <div>
+                <div class="pub-title">GlueOrca &amp; GlueQwen: Fine-tuned Models for GLUE Benchmark Tasks</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span></div>
+                <div class="pub-venue">HuggingFace Model Repository</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://huggingface.co/naimul011/GlueOrca" target="_blank">GlueOrca</a>
+                    <a class="pub-link" href="https://huggingface.co/naimul011/GlueQwen" target="_blank">GlueQwen</a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Main Content -->
-    <div class="container">
-        <div class="main-content">
-            <div class="content-left">
-                <!-- About Section -->
-                <section id="about" class="section">
-                    <h2>About</h2>
-                    <p>
-                        Entrepreneur and AI innovator, founder of Gradmate.ai—an AI-powered platform revolutionizing graduate school applications through LLM orchestration, program matching, and application automation. Featured in Alfred University News for tying first in the Advizex AI Innovation Challenge, where my AI sales bot is projected to boost ROI by 25%.
-                    </p>
-                    <p>
-                        Currently a PhD student and Graduate Research Assistant at Louisiana State University (LSU), focusing on AI, LLMs, catastrophic forgetting, computer vision, and multimodal systems. Thesis: AI Copilot for GE Vernova GridOS (LLM × LangChain × Groq). Published in IEEE and arXiv, with expertise in multi-agent systems and open-source contributions. Driving impact through clean code, curiosity, and scalable AI solutions.
-                    </p>
-                </section>
-                <!-- Research Interests -->
-                <section id="research" class="section">
-                    <h2>Research Interests</h2>
-                    <div class="interests-list">
-                        <span class="interest-tag">Large Language Models</span>
-                        <span class="interest-tag">Catastrophic Forgetting</span>
-                        <span class="interest-tag">Computer Vision</span>
-                        <span class="interest-tag">Natural Language Processing</span>
-                        <span class="interest-tag">Deep Learning</span>
-                        <span class="interest-tag">Multi-Agent Systems</span>
-                        <span class="interest-tag">AI Ethics</span>
-                        <span class="interest-tag">Machine Learning</span>
-                    </div>
-                </section>
-                 <!-- Experience Section -->
-                <section id="experience" class="section">
-                    <h2>Experience</h2>
-                    
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title">Founder & Entrepreneur</div>
-                            <div class="experience-organization">Gradmate.ai</div>
-                            <div class="experience-date">Mar 2025 - Present</div>
-                        </div>
-                        <div class="experience-description">
-                            <p>Founded Gradmate.ai, an AI-powered platform streamlining graduate applications using LLMs, LangChain, and multi-agent systems. Provides personalized program discovery, SOP writing, and organization tools to enhance applicant success and efficiency.</p>
-                            <ul>
-                                <li>Implemented LangChain and LangGraph for agent orchestration</li>
-                                <li>Utilized Groq and DeepSeek for efficient inference</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title">Graduate Research Assistant & PhD Student</div>
-                            <div class="experience-organization">Louisiana State University (LSU)</div>
-                            <div class="experience-date">Jan 2026 - Present</div>
-                        </div>
-                        <div class="experience-description">
-                            <p>Conducting advanced AI research, focusing on catastrophic forgetting in Large Language Models and applications in energy systems.</p>
-                            <ul>
-                                <li>Evaluating LLMs for sequential fine-tuning on NLP tasks</li>
-                                <li>Developing techniques to mitigate performance degradation</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title">Graduate Research Assistant</div>
-                            <div class="experience-organization">Alfred University</div>
-                            <div class="experience-date">Jan 2024 - Dec 2025</div>
-                        </div>
-                        <div class="experience-description">
-                            <p>Conducted research in AI and Deep Learning, including setup of Advanced Power Distribution Management Lab with GE's ADMS and AEMS systems.</p>
-                            <ul>
-                                <li>Teaching Assistant for Python for Power Electronics</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title">Assistant Professor</div>
-                            <div class="experience-organization">Uttara University</div>
-                            <div class="experience-date">Aug 2023 - Jan 2024</div>
-                        </div>
-                        <div class="experience-description">
-                            <p>Conducted undergraduate courses in Computer Science and Engineering.</p>
-                            <ul>
-                                <li>Discrete Mathematics, Data Structure, Structured Programming</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <div class="experience-title">Assistant Professor & Lecturer</div>
-                            <div class="experience-organization">Manarat International University & Cognition.AI</div>
-                            <div class="experience-date">Apr 2019 - Aug 2023</div>
-                        </div>
-                        <div class="experience-description">
-                            <p>Taught advanced AI courses and supervised undergraduate research at Cognition.AI lab.</p>
-                            <ul>
-                                <li>Artificial Intelligence, Computer Vision, Neural Networks</li>
-                                <li>Pattern Recognition, Algorithms, Microprocessor Systems</li>
-                                <li>Supervised students on CV and NLP research projects</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="content-right">
-                <!-- Publications Section -->
-                <section id="publications" class="section">
-                    <h2>Publications</h2>
-                    
-                    <h3>Journal & Conference Papers</h3>
-                    
-                    <div class="publication">
-                        <div class="publication-title">Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</div>
-                        <div class="publication-authors">Naimul Haque</div>
-                        <div class="publication-venue">ACL ARR 2024 (Under Review)</div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</div>
-                        <div class="publication-authors">Naimul Haque, Iffat Labiba, Sadia Akter</div>
-                        <div class="publication-venue">International Conference on Pattern Recognition (ICPR)</div>
-                        <div class="publication-links">
-                            <a href="https://arxiv.org/abs/2309.13601" class="publication-link">ArXiv</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</div>
-                        <div class="publication-authors">Naimul Haque, Meraj Serker, Tariq Bin Bashar</div>
-                        <div class="publication-venue">ICRIC 2023 International Conference on Recent Innovations in Computing</div>
-                        <div class="publication-links">
-                            <a href="https://arxiv.org/abs/2309.13676" class="publication-link">ArXiv</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</div>
-                        <div class="publication-authors">Naimul Haque, Md. Bodrul, Abdullah, Towfiq, Mehorab</div>
-                        <div class="publication-venue">International Conference on Recent Progresses in Science, Engineering and Technology (ICRPSET-2022)</div>
-                        <div class="publication-links">
-                            <a href="https://ieeexplore.ieee.org/document/10188551" class="publication-link">IEEE</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</div>
-                        <div class="publication-authors">Naimul Haque, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</div>
-                        <div class="publication-venue">2022 4th International Conference on Sustainable Technologies for Industry 4.0 (STI)</div>
-                        <div class="publication-links">
-                            <a href="https://ieeexplore.ieee.org/document/10103289" class="publication-link">IEEE</a>
-                            <a href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" class="publication-link">Code</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</div>
-                        <div class="publication-authors">Naimul Haque, Samin Shahriar Tokey</div>
-                        <div class="publication-venue">2019 22nd International Conference on Computer and Information Technology (ICCIT)</div>
-                        <div class="publication-links">
-                            <a href="https://ieeexplore.ieee.org/document/9038376" class="publication-link">IEEE</a>
-                            <a href="https://github.com/naimul011/Portrait-Colorization" class="publication-link">Code</a>
-                        </div>
-                    </div>
-                    <h3>Datasets & Models</h3>
-                    
-                    <div class="publication">
-                        <div class="publication-title">FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</div>
-                        <div class="publication-authors">Naimul Haque, Abida Sultana</div>
-                        <div class="publication-venue">Zenodo, June 2023</div>
-                        <div class="publication-links">
-                            <a href="https://zenodo.org/record/8144361" class="publication-link">Download</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">Bangla Toxic Comments Database</div>
-                        <div class="publication-authors">Naimul Haque, Badrul</div>
-                        <div class="publication-venue">HuggingFace, June 2023</div>
-                        <div class="publication-links">
-                            <a href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" class="publication-link">Dataset</a>
-                        </div>
-                    </div>
-                    <div class="publication">
-                        <div class="publication-title">GlueOrca & GlueQwen: Fine-tuned Models for GLUE Benchmark Tasks</div>
-                        <div class="publication-authors">Naimul Haque</div>
-                        <div class="publication-venue">HuggingFace Model Repository</div>
-                        <div class="publication-links">
-                            <a href="https://huggingface.co/naimul011/GlueOrca" class="publication-link">GlueOrca</a>
-                            <a href="https://huggingface.co/naimul011/GlueQwen" class="publication-link">GlueQwen</a>
-                        </div>
-                    </div>
-                </section>
-               
-                <!-- Education -->
-                <section class="section">
-                    <h2>Education</h2>
-                    <ul class="education-list">
-                        <li>
-                            <div class="education-degree">Ph.D. Electrical Engineering</div>
-                            <div class="education-institution">Louisiana State University (LSU), Baton Rouge, LA (Jan 2026-Present)</div>
-                        </li>
-                        <li>
-                            <div class="education-degree">M.Sc. Electrical Engineering</div>
-                            <div class="education-institution">Alfred University (2024)</div>
-                        </li>
-                        <li>
-                            <div class="education-degree">M.Sc. Computer Science</div>
-                            <div class="education-institution">Jahangirnagar University</div>
-                        </li>
-                        <li>
-                            <div class="education-degree">B.Sc. Computer Science & Engineering</div>
-                            <div class="education-institution">Ahsanullah University of Science and Technology (2019)</div>
-                        </li>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="sec">
+        <h2 class="sec-title"><i class="fas fa-briefcase"></i> Experience</h2>
+
+        <div class="exp-item">
+            <div class="exp-date">Mar 2025 –<br>Present</div>
+            <div>
+                <div class="exp-title">Founder &amp; Entrepreneur</div>
+                <div class="exp-org">Gradmate.ai</div>
+                <div class="exp-desc">
+                    Founded and lead development of an AI-powered graduate application platform.
+                    <ul>
+                        <li>LangChain &amp; LangGraph for multi-agent orchestration</li>
+                        <li>Groq and DeepSeek for low-latency LLM inference</li>
+                        <li>RAG-based program discovery and SOP generation pipelines</li>
                     </ul>
-                </section>
-                <!-- Technical Skills -->
-                <section class="section">
-                    <h2>Technical Skills</h2>
-                    <ul class="skills-list">
-                        <li><span class="skill-category">Programming:</span> Python, C/C++, MATLAB, JavaScript</li>
-                        <li><span class="skill-category">ML/AI:</span> TensorFlow, PyTorch, Keras, Scikit-learn</li>
-                        <li><span class="skill-category">NLP:</span> HuggingFace, LangChain, LangGraph, Transformers</li>
-                        <li><span class="skill-category">Computer Vision:</span> OpenCV, YOLO, CNNs</li>
-                        <li><span class="skill-category">Tools:</span> Git, Docker, Google Cloud, LaTeX</li>
-                    </ul>
-                </section>
-                <!-- Awards & Recognition -->
-                <section class="section">
-                    <h2>Awards & Recognition</h2>
-                    <div class="achievement-item">
-                        <div class="achievement-title">Advizex AI Innovation Challenge</div>
-                        <div class="achievement-description">Tied for 1st Place (2024) - Developed AI sales bot projected to increase ROI by 25%. Featured in Alfred University News press release.</div>
-                    </div>
-                    <div class="achievement-item">
-                        <div class="achievement-title">Machine Vision in the Electric Industry with Deep Learning</div>
-                        <div class="achievement-description">EPRI Certification (Issued Sep 2024) - 22 PDHs in Power Industry AI applications</div>
-                    </div>
-                    <div class="achievement-item">
-                        <div class="achievement-title">Multiple Programming Competitions</div>
-                        <div class="achievement-description">1st and 2nd place finishes in university competitions</div>
-                    </div>
-                </section>
-                <!-- Current Projects -->
-                <section class="section">
-                    <h2>Current Projects</h2>
-                    <p><strong>Gradmate.ai:</strong> AI platform for graduate applications, featuring program discovery, SOP/LOR crafting, IELTS practice, and community support. Seeking investment to scale and expand features.</p>
-                    <p><strong>AI Copilot for GE Vernova GridOS:</strong> Thesis developing LLM-based multi-agent systems for power grid management using LangChain and Groq.</p>
-                    <p><strong>Catastrophic Forgetting in LLMs:</strong> Researching performance degradation in sequential fine-tuning for NLP tasks.</p>
-                </section>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <p>© 2026 Naimul Haque. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">Last updated: February 2026</p>
+
+        <div class="exp-item">
+            <div class="exp-date">Jan 2026 –<br>Present</div>
+            <div>
+                <div class="exp-title">Graduate Research Assistant &amp; PhD Student</div>
+                <div class="exp-org">Louisiana State University (LSU)</div>
+                <div class="exp-desc">
+                    Research on catastrophic forgetting in LLMs and AI for smart energy grids.
+                    <ul>
+                        <li>Sequential fine-tuning experiments on GLUE/SuperGLUE benchmarks</li>
+                        <li>LLM copilot system for GE Vernova GridOS (thesis)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </footer>
-    <script>
-        // Simple smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+
+        <div class="exp-item">
+            <div class="exp-date">Jan 2024 –<br>Dec 2025</div>
+            <div>
+                <div class="exp-title">Graduate Research Assistant</div>
+                <div class="exp-org">Alfred University</div>
+                <div class="exp-desc">
+                    AI and deep learning research; setup of Advanced Power Distribution Management Lab with GE's ADMS and AEMS systems.
+                    Teaching Assistant for <em>Python for Power Electronics</em>.
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-date">Aug 2023 –<br>Jan 2024</div>
+            <div>
+                <div class="exp-title">Assistant Professor</div>
+                <div class="exp-org">Uttara University</div>
+                <div class="exp-desc">
+                    Undergraduate courses: Discrete Mathematics, Data Structures, Structured Programming.
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-date">Apr 2019 –<br>Aug 2023</div>
+            <div>
+                <div class="exp-title">Assistant Professor &amp; Lecturer</div>
+                <div class="exp-org">Manarat International University &amp; Cognition.AI Lab</div>
+                <div class="exp-desc">
+                    Taught advanced AI courses and supervised undergraduate CV/NLP research.
+                    <ul>
+                        <li>Courses: AI, Computer Vision, Neural Networks, Pattern Recognition</li>
+                        <li>Supervised capstone projects in face recognition and object detection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="sec">
+        <h2 class="sec-title"><i class="fas fa-university"></i> Education</h2>
+
+        <div class="edu-item">
+            <div class="edu-year">2026 –<br>Present</div>
+            <div>
+                <div class="edu-degree">Ph.D. — Electrical Engineering</div>
+                <div class="edu-inst">Louisiana State University (LSU), Baton Rouge, LA</div>
+            </div>
+        </div>
+
+        <div class="edu-item">
+            <div class="edu-year">2024</div>
+            <div>
+                <div class="edu-degree">M.Sc. — Electrical Engineering</div>
+                <div class="edu-inst">Alfred University, Alfred, NY</div>
+            </div>
+        </div>
+
+        <div class="edu-item">
+            <div class="edu-year">—</div>
+            <div>
+                <div class="edu-degree">M.Sc. — Computer Science</div>
+                <div class="edu-inst">Jahangirnagar University, Bangladesh</div>
+            </div>
+        </div>
+
+        <div class="edu-item">
+            <div class="edu-year">2019</div>
+            <div>
+                <div class="edu-degree">B.Sc. — Computer Science &amp; Engineering</div>
+                <div class="edu-inst">Ahsanullah University of Science and Technology (AUST), Bangladesh</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="sec">
+        <h2 class="sec-title"><i class="fas fa-code"></i> Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-row"><span class="sk">Languages</span><br>Python · C/C++ · MATLAB · JavaScript</div>
+            <div class="skill-row"><span class="sk">CV Frameworks</span><br>OpenCV · YOLOv8 · CNNs · Detectron2 · DLIB</div>
+            <div class="skill-row"><span class="sk">Generative / Face</span><br>StyleGAN · DeepFace · InsightFace · Diffusers</div>
+            <div class="skill-row"><span class="sk">ML / DL</span><br>PyTorch · TensorFlow · Keras · Scikit-learn</div>
+            <div class="skill-row"><span class="sk">NLP / LLM</span><br>HuggingFace · LangChain · LangGraph · Transformers</div>
+            <div class="skill-row"><span class="sk">Inference</span><br>Groq · DeepSeek · Ollama · vLLM</div>
+            <div class="skill-row"><span class="sk">MLOps / Tools</span><br>Docker · Git · Google Cloud · W&amp;B · LaTeX</div>
+            <div class="skill-row"><span class="sk">Power Systems</span><br>GE ADMS · AEMS · GridOS · Power Analytics</div>
+        </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="sec">
+        <h2 class="sec-title"><i class="fas fa-trophy"></i> Awards &amp; Recognition</h2>
+
+        <div class="award-item">
+            <div class="award-icon"><i class="fas fa-medal"></i></div>
+            <div>
+                <div class="award-title">Advizex AI Innovation Challenge — 1st Place (Tied) · 2024</div>
+                <div class="award-desc">Developed an AI sales bot projected to increase ROI by 25%. Featured in Alfred University News press release.</div>
+            </div>
+        </div>
+
+        <div class="award-item">
+            <div class="award-icon"><i class="fas fa-certificate"></i></div>
+            <div>
+                <div class="award-title">EPRI Certification — Machine Vision in the Electric Industry with Deep Learning · Sep 2024</div>
+                <div class="award-desc">22 PDHs in Power Industry AI applications.</div>
+            </div>
+        </div>
+
+        <div class="award-item">
+            <div class="award-icon"><i class="fas fa-code"></i></div>
+            <div>
+                <div class="award-title">Multiple Programming Competitions</div>
+                <div class="award-desc">1st and 2nd place finishes in university-level programming contests.</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer id="contact">
+    <p>
+        Naimul Haque &nbsp;·&nbsp;
+        <a href="mailto:naimul@gradmate.ai">naimul@gradmate.ai</a> &nbsp;·&nbsp;
+        Baton Rouge, LA
+    </p>
+    <p style="margin-top:.5rem;font-size:.78rem;opacity:.55;">
+        © 2026 Naimul Haque &nbsp;·&nbsp; Last updated February 2026
+    </p>
+</footer>
+
+<script>
+    // Highlight active nav on scroll
+    const sections = document.querySelectorAll('section[id], main');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const onScroll = () => {
+        let cur = '';
+        document.querySelectorAll('section[id]').forEach(s => {
+            if (window.scrollY >= s.offsetTop - 120) cur = s.id;
         });
-        // Simple active link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.style.borderBottomColor = 'transparent';
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.style.borderBottomColor = 'var(--accent-color)';
-                }
-            });
+        navLinks.forEach(l => {
+            l.style.borderBottomColor = l.getAttribute('href') === '#' + cur
+                ? 'var(--red)' : 'transparent';
+            l.style.color = l.getAttribute('href') === '#' + cur
+                ? 'var(--navy)' : '';
         });
-    </script>
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
 </body>
 </html>
-
-
