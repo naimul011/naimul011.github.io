@@ -1,1013 +1,457 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naimul Haque — PhD Student & Computer Vision Researcher</title>
-    <meta name="description" content="PhD Student at LSU. Research in Computer Vision, LLMs, Catastrophic Forgetting, Privacy-Preserving AI, and Multimodal AI. Founder of Gradmate.ai.">
-
+    <meta name="description" content="PhD Student at LSU. Computer Vision, LLMs, Trustworthy AI, Privacy-Preserving AI. Founder of Gradmate.ai.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <style>
-        :root {
-            --ink:      #0f1923;
-            --ink-soft: #1e2d3d;
-            --cream:    #f5f0e8;
-            --paper:    #fdfbf7;
-            --accent:   #c94a2b;
-            --accent2:  #1a3a5c;
-            --gold:     #c9a227;
-            --warm-gray:#8a8070;
-            --line:     rgba(15,25,35,.12);
-            --line-med: rgba(15,25,35,.08);
-            --mono:     'DM Mono', monospace;
-            --body:     'Outfit', sans-serif;
-            --display:  'Cormorant Garamond', serif;
-            --max:      1080px;
-            --pad:      clamp(18px, 4vw, 48px);
-        }
+```
+<style>
+    /* ═══════════════════════════════════════
+       THEME TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+        --accent:  #e05a38;
+        --gold:    #c9a227;
+        --accent2: #4a90d9;
+        --mono:    'DM Mono', monospace;
+        --body:    'Outfit', sans-serif;
+        --display: 'Cormorant Garamond', serif;
+        --max:     1080px;
+        --pad:     clamp(18px, 4vw, 48px);
+        --r:       4px;
+        --t:       .22s ease;
+    }
+
+    [data-theme="dark"] {
+        --bg:       #0d1117;
+        --bg-soft:  #161b22;
+        --bg-card:  #1a2030;
+        --ink:      #e6edf3;
+        --ink-soft: #c9d1d9;
+        --muted:    #8b949e;
+        --line:     rgba(255,255,255,.08);
+        --line-med: rgba(255,255,255,.05);
+        --nav-bg:   rgba(13,17,23,.9);
+        --ring-gap: #0d1117;
+        --sb:       #30363d;
+    }
+
+    [data-theme="light"] {
+        --bg:       #fdfbf7;
+        --bg-soft:  #f5f0e8;
+        --bg-card:  #eeeae2;
+        --ink:      #0f1923;
+        --ink-soft: #1e2d3d;
+        --muted:    #8a8070;
+        --line:     rgba(15,25,35,.12);
+        --line-med: rgba(15,25,35,.07);
+        --nav-bg:   rgba(253,251,247,.93);
+        --ring-gap: #fdfbf7;
+        --sb:       #c4bfb5;
+    }
+
+    /* ═══════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+        font-family: var(--body);
+        background: var(--bg); color: var(--ink);
+        overflow-x: hidden;
+        transition: background var(--t), color var(--t);
+    }
+    body::before {
+        content: ''; position: fixed; inset: 0;
+        pointer-events: none; z-index: 9998; opacity: .018;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .72; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--sb); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════
+       PROGRESS BAR
+    ═══════════════════════════════════════ */
+    #progress {
+        position: fixed; top: 0; left: 0; height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--gold));
+        z-index: 9999; width: 0%; transition: width .1s;
+    }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
+    nav {
+        position: sticky; top: 0; z-index: 800;
+        background: var(--nav-bg); backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+        transition: background var(--t);
+    }
+    .nav-inner {
+        max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);
+        display: flex; justify-content: space-between; align-items: center; height: 54px;
+    }
+    .nav-name { font-family: var(--display); font-size: 1.2rem; font-weight: 600; color: var(--ink); letter-spacing: .01em; }
+    .nav-name span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.8rem; }
+    .nav-links a {
+        color: var(--muted); font-size: .74rem; font-weight: 500;
+        letter-spacing: .1em; text-transform: uppercase; text-decoration: none;
+        position: relative; transition: color .2s;
+    }
+    .nav-links a::after {
+        content: ''; position: absolute; bottom: -3px; left: 0;
+        width: 0; height: 1.5px; background: var(--accent); transition: width .25s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); opacity: 1; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    #theme-toggle {
+        background: none; border: 1.5px solid var(--line); border-radius: var(--r);
+        width: 32px; height: 32px; cursor: pointer; color: var(--muted); font-size: .8rem;
+        display: flex; align-items: center; justify-content: center;
+        transition: all var(--t); flex-shrink: 0;
+    }
+    #theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+        max-width: var(--max); margin: 0 auto; padding: 68px var(--pad) 60px;
+        display: grid; grid-template-columns: 200px 1fr; gap: 52px;
+        align-items: start; position: relative;
+    }
+    .hero::after {
+        content: ''; position: absolute; right: 0; top: 40px;
+        width: 40%; height: 300px;
+        background: radial-gradient(ellipse at 80% 30%, rgba(224,90,56,.07) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .photo-frame { position: relative; width: 188px; height: 188px; }
+    .photo-frame::before {
+        content: ''; position: absolute; inset: -6px; border-radius: 50%;
+        background: conic-gradient(var(--accent) 0%, var(--gold) 35%, var(--accent2) 65%, var(--accent) 100%);
+        animation: spin 12s linear infinite; opacity: .65;
+    }
+    .photo-frame::after {
+        content: ''; position: absolute; inset: -3px; border-radius: 50%;
+        background: var(--ring-gap); transition: background var(--t);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-photo { position: relative; z-index: 1; width: 188px; height: 188px; border-radius: 50%; object-fit: cover; display: block; }
+    .hero-photo-placeholder {
+        position: relative; z-index: 1; width: 188px; height: 188px; border-radius: 50%;
+        background: var(--bg-card); display: flex; align-items: center; justify-content: center;
+        font-family: var(--display); font-size: 2.4rem; font-weight: 600; color: var(--muted);
+    }
+    .hero-right { padding-top: 6px; }
+    .hero-eyebrow {
+        font-family: var(--mono); font-size: .68rem; color: var(--accent);
+        letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem;
+        opacity: 0; animation: fadeUp .6s .15s forwards;
+    }
+    .hero-right h1 {
+        font-family: var(--display); font-size: clamp(2.3rem, 5vw, 3.5rem);
+        font-weight: 700; color: var(--ink); line-height: 1.05; margin-bottom: .45rem; letter-spacing: -.01em;
+        opacity: 0; animation: fadeUp .6s .25s forwards;
+    }
+    .hero-right h1 em { font-style: italic; color: var(--accent); }
+    .hero-tagline {
+        font-size: .93rem; color: var(--muted); font-weight: 300; margin-bottom: 1rem; letter-spacing: .01em;
+        opacity: 0; animation: fadeUp .6s .35s forwards;
+    }
+    .hero-affil {
+        font-size: .855rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1rem;
+        padding-left: .82rem; border-left: 2px solid var(--accent);
+        opacity: 0; animation: fadeUp .6s .45s forwards;
+    }
+    .hero-affil strong { color: var(--ink); font-weight: 600; }
+    .hero-affil .founder { color: var(--accent); font-weight: 600; }
+    .hero-contacts {
+        display: flex; flex-direction: column; gap: .26rem; margin-bottom: 1.2rem;
+        opacity: 0; animation: fadeUp .6s .55s forwards;
+    }
+    .hero-contacts span { font-size: .76rem; font-family: var(--mono); color: var(--muted); display: flex; align-items: center; gap: .48rem; }
+    .hero-contacts i { width: 14px; color: var(--accent2); font-size: .72rem; }
+    .hero-links {
+        display: flex; flex-wrap: wrap; gap: .48rem;
+        opacity: 0; animation: fadeUp .6s .65s forwards;
+    }
+    .hero-link {
+        display: inline-flex; align-items: center; gap: .38rem;
+        font-size: .7rem; font-family: var(--mono); letter-spacing: .04em;
+        padding: .28rem .8rem; border: 1.5px solid var(--line);
+        border-radius: var(--r); color: var(--ink-soft); background: transparent;
+        text-decoration: none; transition: all var(--t);
+    }
+    .hero-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); opacity: 1; transform: translateY(-1px); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
+
+    /* ═══════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════ */
+    .divider { border: none; height: 1px; background: var(--line); }
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad) 96px; }
+    .sec { margin-top: 68px; }
+    .sec-title { display: flex; align-items: baseline; gap: .7rem; margin-bottom: 1.75rem; }
+    .sec-num { font-family: var(--mono); font-size: .64rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; }
+    .sec-title-text { font-family: var(--display); font-size: 1.7rem; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+    .sec-title-line { flex: 1; height: 1px; background: var(--line); position: relative; top: -3px; }
+
+    /* ═══════════════════════════════════════
+       REVEAL
+    ═══════════════════════════════════════ */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ═══════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-text p { font-size: .875rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: .7rem; text-align: justify; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; align-content: start; }
+    .stat-box {
+        padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--r);
+        background: var(--bg-soft); position: relative; overflow: hidden; cursor: default;
+        transition: transform .25s, box-shadow .25s;
+    }
+    .stat-box::before { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0%; background: var(--accent); transition: width .35s ease; }
+    .stat-box:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+    .stat-box:hover::before { width: 100%; }
+    .stat-num { font-family: var(--display); font-size: 1.9rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: .18rem; }
+    .stat-label { font-size: .68rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ═══════════════════════════════════════
+       TAGS
+    ═══════════════════════════════════════ */
+    .tags { display: flex; flex-wrap: wrap; gap: .48rem; }
+    .tag {
+        font-size: .7rem; font-family: var(--mono); padding: .26rem .64rem;
+        border: 1.5px solid var(--line); border-radius: 2px; color: var(--ink-soft);
+        background: transparent; transition: all .2s; cursor: default;
+    }
+    .tag:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .tag.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .tag.accent-tag { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ═══════════════════════════════════════
+       TIMELINE
+    ═══════════════════════════════════════ */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+    .tl-item { position: relative; padding: 0 0 1.9rem 2rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+        position: absolute; left: -1.5rem; top: 6px;
+        width: 9px; height: 9px; border-radius: 50%;
+        background: var(--bg); border: 2px solid var(--muted);
+        transition: border-color .3s, transform .3s;
+    }
+    .tl-item:hover .tl-dot { border-color: var(--accent); transform: scale(1.35); }
+    .tl-item.current .tl-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(224,90,56,.15); }
+    .tl-date { font-family: var(--mono); font-size: .66rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .28rem; }
+    .tl-title { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .1rem; }
+    .tl-org { font-size: .82rem; color: var(--accent); font-weight: 500; margin-bottom: .35rem; }
+    .tl-body { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+
+    /* ═══════════════════════════════════════
+       PROJECTS
+    ═══════════════════════════════════════ */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 1.4rem; }
+    .project-card {
+        border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+        background: var(--bg-soft); transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.24); }
+    .project-img-wrap { width: 100%; aspect-ratio: 16/7; overflow: hidden; background: var(--bg-card); border-bottom: 1px solid var(--line); }
+    .project-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .project-card:hover .project-img-wrap img { transform: scale(1.04); }
+    .project-body { padding: 1rem 1.2rem 1.2rem; }
+    .project-badge { font-family: var(--mono); font-size: .63rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .38rem; }
+    .project-title { font-family: var(--display); font-size: 1.08rem; font-weight: 600; color: var(--ink); margin-bottom: .45rem; line-height: 1.3; }
+    .project-desc { font-size: .8rem; color: var(--muted); line-height: 1.65; margin-bottom: .8rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .28rem; }
+    .project-tags .tag { font-size: .63rem; padding: .12rem .44rem; }
+
+    /* ═══════════════════════════════════════
+       PUBLICATIONS
+    ═══════════════════════════════════════ */
+    .pub-list { display: flex; flex-direction: column; }
+    .pub {
+        display: grid; grid-template-columns: 78px 1fr; gap: .65rem 1.1rem;
+        padding: 1.1rem 0; border-bottom: 1px solid var(--line-med);
+        align-items: start; transition: background .2s, padding .2s;
+    }
+    .pub:last-child { border-bottom: none; }
+    .pub:hover { background: var(--bg-soft); margin: 0 -.75rem; padding-left: .75rem; padding-right: .75rem; border-radius: var(--r); }
+    .pub-year-col { text-align: right; padding-top: .18rem; }
+    .pub-year { font-family: var(--mono); font-size: .72rem; color: var(--muted); display: block; margin-bottom: .26rem; }
+    .pub-badge { display: inline-block; font-family: var(--mono); font-size: .58rem; padding: .08rem .36rem; border-radius: 2px; }
+    .badge-review { background: rgba(250,220,100,.14); color: #e6c96e; border: 1px solid rgba(250,220,100,.28); }
+    .badge-ieee   { background: rgba(100,160,255,.11); color: #7ab4f5; border: 1px solid rgba(100,160,255,.22); }
+    .badge-conf   { background: rgba(100,220,160,.11); color: #6dd6a2; border: 1px solid rgba(100,220,160,.22); }
+    .badge-data   { background: rgba(180,140,255,.11); color: #c4a6f7; border: 1px solid rgba(180,140,255,.22); }
+    [data-theme="light"] .badge-review { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    [data-theme="light"] .badge-ieee   { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    [data-theme="light"] .badge-conf   { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    [data-theme="light"] .badge-data   { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
+    .pub-title { font-weight: 600; font-size: .875rem; color: var(--ink); line-height: 1.4; margin-bottom: .26rem; }
+    .pub-authors { font-size: .78rem; color: var(--muted); font-style: italic; margin-bottom: .26rem; }
+    .pub-authors .me { font-weight: 600; color: var(--ink-soft); font-style: normal; }
+    .pub-venue { font-size: .78rem; color: var(--accent2); font-weight: 600; margin-bottom: .42rem; }
+    .pub-links { display: flex; gap: .42rem; flex-wrap: wrap; }
+    .pub-link {
+        font-family: var(--mono); font-size: .65rem; padding: .15rem .46rem;
+        border: 1.5px solid var(--line); border-radius: 2px; color: var(--ink-soft);
+        text-decoration: none; transition: all .2s; letter-spacing: .04em;
+    }
+    .pub-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); opacity: 1; }
+    .pub-sub-title {
+        font-family: var(--display); font-size: 1.08rem; font-weight: 600; color: var(--ink);
+        margin: 1.9rem 0 .65rem; padding-bottom: .32rem;
+        border-bottom: 1px dashed var(--line); letter-spacing: .01em;
+    }
+
+    /* ═══════════════════════════════════════
+       SKILLS
+    ═══════════════════════════════════════ */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: .8rem; }
+    .skill-card {
+        padding: .85rem 1rem; background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: var(--r); transition: transform .2s, box-shadow .2s;
+    }
+    .skill-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+    .skill-label { font-family: var(--mono); font-size: .66rem; font-weight: 500; color: var(--accent2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .32rem; }
+    .skill-items { font-size: .82rem; color: var(--ink-soft); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       AWARDS
+    ═══════════════════════════════════════ */
+    .awards-list { display: flex; flex-direction: column; gap: .75rem; }
+    .award-card {
+        display: flex; gap: .95rem; padding: .95rem 1.1rem;
+        background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: var(--r); align-items: flex-start;
+        transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden;
+    }
+    .award-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); transform: scaleY(0); transform-origin: bottom; transition: transform .3s ease; }
+    .award-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,.14); }
+    .award-card:hover::after { transform: scaleY(1); }
+    .award-icon { width: 32px; height: 32px; border-radius: 5px; background: var(--bg-card); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: .82rem; flex-shrink: 0; }
+    .award-title { font-weight: 600; font-size: .855rem; color: var(--ink); margin-bottom: .14rem; }
+    .award-desc { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════
+       EDUCATION
+    ═══════════════════════════════════════ */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: .8rem; }
+    .edu-card {
+        padding: 1rem 1.1rem; background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: var(--r); transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden;
+    }
+    .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+    .edu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,.15); }
+    .edu-card:hover::before { transform: scaleX(1); }
+    .edu-year-badge { font-family: var(--mono); font-size: .64rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .4rem; }
+    .edu-degree { font-weight: 600; font-size: .875rem; color: var(--ink); margin-bottom: .2rem; line-height: 1.35; }
+    .edu-inst { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+    .edu-gpa { margin-top: .42rem; display: inline-block; font-family: var(--mono); font-size: .63rem; padding: .09rem .4rem; background: var(--accent); color: #fff; border-radius: 2px; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+        background: var(--bg-card); border-top: 1px solid var(--line);
+        text-align: center; padding: 2rem var(--pad);
+        font-size: .76rem; font-family: var(--mono); color: var(--muted);
+        transition: background var(--t);
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); opacity: 1; }
+    .footer-name { font-family: var(--display); font-size: 1.35rem; color: var(--ink); font-weight: 600; margin-bottom: .5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin: .75rem 0; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════
+       BACK TO TOP
+    ═══════════════════════════════════════ */
+    #top-btn {
+        position: fixed; bottom: 1.7rem; right: 1.7rem;
+        width: 36px; height: 36px; background: var(--bg-card); border: 1px solid var(--line);
+        color: var(--muted); border-radius: var(--r); cursor: pointer;
+        font-size: .82rem; display: flex; align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none; transition: all .3s; z-index: 500;
+    }
+    #top-btn.show { opacity: 1; pointer-events: auto; }
+    #top-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-3px); }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; gap: 2rem; }
+        .photo-frame { margin: 0 auto; }
+        .about-grid { grid-template-columns: 1fr; }
+        .projects-grid { grid-template-columns: 1fr; }
+        .pub { grid-template-columns: 1fr; }
+        .pub-year-col { text-align: left; }
+        .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+        .edu-grid, .skills-grid { grid-template-columns: 1fr; }
+        .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+</style>
+```
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-
-        body {
-            font-family: var(--body);
-            background: var(--paper);
-            color: var(--ink);
-            overflow-x: hidden;
-        }
-
-        /* ─── GRAIN OVERLAY ─────────────────────────────────── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: .025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 200px;
-        }
-
-        a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
-        a:hover { opacity: .7; }
-
-        /* ─── SCROLLBAR ─────────────────────────────────────── */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--cream); }
-        ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 3px; }
-
-        /* ─── PROGRESS BAR ──────────────────────────────────── */
-        #progress {
-            position: fixed;
-            top: 0; left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--gold));
-            z-index: 9999;
-            width: 0%;
-            transition: width .1s;
-        }
-
-        /* ─── NAV ───────────────────────────────────────────── */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 800;
-            background: rgba(253,251,247,.92);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .nav-inner {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 var(--pad);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 56px;
-        }
-
-        .nav-name {
-            font-family: var(--display);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--ink);
-            letter-spacing: .01em;
-        }
-
-        .nav-name span { color: var(--accent); }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--warm-gray);
-            font-size: .78rem;
-            font-weight: 500;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            position: relative;
-            transition: color .2s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px; left: 0;
-            width: 0; height: 1.5px;
-            background: var(--accent);
-            transition: width .25s ease;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--ink);
-            opacity: 1;
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-        /* ─── HERO ──────────────────────────────────────────── */
-        .hero {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 72px var(--pad) 64px;
-            display: grid;
-            grid-template-columns: 210px 1fr;
-            gap: 56px;
-            align-items: start;
-            position: relative;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            right: 0; top: 40px;
-            width: 38%; height: 340px;
-            background: radial-gradient(ellipse at 80% 30%, rgba(201,74,43,.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Photo */
-        .photo-frame {
-            position: relative;
-            width: 190px;
-            height: 190px;
-        }
-
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            background: conic-gradient(var(--accent) 0%, var(--gold) 35%, var(--accent2) 65%, var(--accent) 100%);
-            animation: spin 12s linear infinite;
-            opacity: .7;
-        }
-
-        .photo-frame::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: var(--paper);
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .hero-photo {
-            position: relative;
-            z-index: 1;
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .hero-photo-placeholder {
-            position: relative;
-            z-index: 1;
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            background: var(--cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--display);
-            font-size: 2.6rem;
-            font-weight: 600;
-            color: var(--warm-gray);
-        }
-
-        /* Hero text */
-        .hero-right {
-            padding-top: 8px;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--mono);
-            font-size: .72rem;
-            color: var(--accent);
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            margin-bottom: .7rem;
-            opacity: 0;
-            animation: fadeUp .6s .15s forwards;
-        }
-
-        .hero-right h1 {
-            font-family: var(--display);
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            font-weight: 700;
-            color: var(--ink);
-            line-height: 1.05;
-            margin-bottom: .5rem;
-            letter-spacing: -.01em;
-            opacity: 0;
-            animation: fadeUp .6s .25s forwards;
-        }
-
-        .hero-right h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .hero-tagline {
-            font-size: 1rem;
-            color: var(--warm-gray);
-            font-weight: 300;
-            margin-bottom: 1.2rem;
-            letter-spacing: .01em;
-            opacity: 0;
-            animation: fadeUp .6s .35s forwards;
-        }
-
-        .hero-affil {
-            font-size: .92rem;
-            color: var(--ink-soft);
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-            padding-left: .9rem;
-            border-left: 2px solid var(--accent);
-            opacity: 0;
-            animation: fadeUp .6s .45s forwards;
-        }
-
-        .hero-affil strong { color: var(--ink); font-weight: 600; }
-        .hero-affil .founder { color: var(--accent); font-weight: 600; }
-
-        .hero-contacts {
-            display: flex;
-            flex-direction: column;
-            gap: .3rem;
-            margin-bottom: 1.4rem;
-            opacity: 0;
-            animation: fadeUp .6s .55s forwards;
-        }
-
-        .hero-contacts span {
-            font-size: .82rem;
-            font-family: var(--mono);
-            color: var(--warm-gray);
-            display: flex;
-            align-items: center;
-            gap: .55rem;
-        }
-
-        .hero-contacts i { width: 14px; color: var(--accent2); font-size: .78rem; }
-
-        .hero-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .55rem;
-            opacity: 0;
-            animation: fadeUp .6s .65s forwards;
-        }
-
-        .hero-link {
-            display: inline-flex;
-            align-items: center;
-            gap: .45rem;
-            font-size: .75rem;
-            font-family: var(--mono);
-            padding: .35rem .9rem;
-            border: 1.5px solid var(--line);
-            border-radius: 2px;
-            color: var(--ink-soft);
-            background: transparent;
-            text-decoration: none;
-            transition: all .22s ease;
-            letter-spacing: .04em;
-        }
-
-        .hero-link:hover {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-            opacity: 1;
-            transform: translateY(-1px);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ─── DIVIDER ───────────────────────────────────────── */
-        .divider {
-            border: none;
-            height: 1px;
-            background: var(--line);
-        }
-
-        /* ─── PAGE BODY ─────────────────────────────────────── */
-        .page {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 var(--pad) 100px;
-        }
-
-        /* ─── SECTION ───────────────────────────────────────── */
-        .sec {
-            margin-top: 72px;
-        }
-
-        .sec-title {
-            display: flex;
-            align-items: baseline;
-            gap: .75rem;
-            margin-bottom: 2rem;
-        }
-
-        .sec-title-text {
-            font-family: var(--display);
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: var(--ink);
-            letter-spacing: -.01em;
-        }
-
-        .sec-title-line {
-            flex: 1;
-            height: 1px;
-            background: var(--line);
-            position: relative;
-            top: -4px;
-        }
-
-        .sec-num {
-            font-family: var(--mono);
-            font-size: .68rem;
-            color: var(--accent);
-            letter-spacing: .12em;
-            text-transform: uppercase;
-        }
-
-        /* ─── REVEAL ANIMATION ──────────────────────────────── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity .65s ease, transform .65s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
-        }
-
-        /* ─── ABOUT ─────────────────────────────────────────── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-        }
-
-        .about-text p {
-            font-size: .95rem;
-            line-height: 1.85;
-            color: var(--ink-soft);
-            margin-bottom: .9rem;
-            text-align: justify;
-        }
-
-        .about-text p:last-child { margin-bottom: 0; }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            align-content: start;
-        }
-
-        .stat-box {
-            padding: 1.2rem 1.4rem;
-            border: 1px solid var(--line);
-            border-radius: 4px;
-            background: var(--cream);
-            position: relative;
-            overflow: hidden;
-            transition: transform .25s, box-shadow .25s;
-        }
-
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            height: 2px;
-            width: 0%;
-            background: var(--accent);
-            transition: width .35s ease;
-        }
-
-        .stat-box:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.07); }
-        .stat-box:hover::before { width: 100%; }
-
-        .stat-num {
-            font-family: var(--display);
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: .25rem;
-        }
-
-        .stat-label {
-            font-size: .78rem;
-            color: var(--warm-gray);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-        }
-
-        /* ─── INTERESTS / TAGS ──────────────────────────────── */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .6rem;
-        }
-
-        .tag {
-            font-size: .75rem;
-            font-family: var(--mono);
-            padding: .32rem .75rem;
-            border: 1.5px solid var(--line);
-            border-radius: 2px;
-            color: var(--ink-soft);
-            background: transparent;
-            transition: all .2s;
-            cursor: default;
-        }
-
-        .tag:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-
-        .tag.primary {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-        }
-
-        .tag.accent-tag {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
-
-        /* ─── TIMELINE (experience / education) ────────────── */
-        .timeline {
-            position: relative;
-            padding-left: 1.6rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 8px; bottom: 8px;
-            width: 1px;
-            background: var(--line);
-        }
-
-        .tl-item {
-            position: relative;
-            padding: 0 0 2.2rem 2rem;
-        }
-
-        .tl-item:last-child { padding-bottom: 0; }
-
-        .tl-dot {
-            position: absolute;
-            left: -1.6rem;
-            top: 6px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--paper);
-            border: 2px solid var(--warm-gray);
-            transition: border-color .3s, transform .3s;
-        }
-
-        .tl-item:hover .tl-dot {
-            border-color: var(--accent);
-            transform: scale(1.3);
-        }
-
-        .tl-item.current .tl-dot {
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(201,74,43,.15);
-        }
-
-        .tl-date {
-            font-family: var(--mono);
-            font-size: .72rem;
-            color: var(--warm-gray);
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            margin-bottom: .35rem;
-        }
-
-        .tl-title {
-            font-size: .97rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: .15rem;
-            line-height: 1.35;
-        }
-
-        .tl-org {
-            font-size: .88rem;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: .5rem;
-        }
-
-        .tl-body {
-            font-size: .875rem;
-            color: var(--warm-gray);
-            line-height: 1.7;
-        }
-
-        .tl-body ul {
-            padding-left: 1rem;
-            margin-top: .3rem;
-        }
-
-        .tl-body li { margin-bottom: .2rem; }
-
-        /* ─── PROJECTS ──────────────────────────────────────── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .project-card {
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            overflow: hidden;
-            background: var(--paper);
-            transition: transform .3s ease, box-shadow .3s ease;
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(201,74,43,.03) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(0,0,0,.1);
-        }
-
-        .project-img-wrap {
-            width: 100%;
-            aspect-ratio: 16/8;
-            overflow: hidden;
-            background: var(--cream);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .project-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform .5s ease;
-        }
-
-        .project-card:hover .project-img-wrap img { transform: scale(1.04); }
-
-        .project-body {
-            padding: 1.3rem 1.5rem 1.5rem;
-        }
-
-        .project-badge {
-            font-family: var(--mono);
-            font-size: .68rem;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: var(--accent);
-            margin-bottom: .5rem;
-        }
-
-        .project-title {
-            font-family: var(--display);
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: .65rem;
-            line-height: 1.3;
-        }
-
-        .project-desc {
-            font-size: .875rem;
-            color: var(--warm-gray);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .35rem;
-        }
-
-        .project-tags .tag {
-            font-size: .68rem;
-            padding: .15rem .5rem;
-        }
-
-        /* ─── PUBLICATIONS ──────────────────────────────────── */
-        .pub-list { display: flex; flex-direction: column; gap: 0; }
-
-        .pub {
-            display: grid;
-            grid-template-columns: 88px 1fr;
-            gap: .8rem 1.4rem;
-            padding: 1.4rem 0;
-            border-bottom: 1px solid var(--line-med);
-            align-items: start;
-            transition: background .2s;
-        }
-
-        .pub:last-child { border-bottom: none; }
-        .pub:hover { background: var(--cream); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; border-radius: 4px; }
-
-        .pub-year-col {
-            text-align: right;
-            padding-top: .22rem;
-        }
-
-        .pub-year {
-            font-family: var(--mono);
-            font-size: .78rem;
-            color: var(--warm-gray);
-            display: block;
-            margin-bottom: .3rem;
-        }
-
-        .pub-badge {
-            display: inline-block;
-            font-family: var(--mono);
-            font-size: .62rem;
-            padding: .1rem .42rem;
-            border-radius: 2px;
-        }
-
-        .badge-review { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-        .badge-ieee   { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
-        .badge-conf   { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-        .badge-data   { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
-
-        .pub-title {
-            font-weight: 600;
-            font-size: .945rem;
-            color: var(--ink);
-            line-height: 1.4;
-            margin-bottom: .3rem;
-        }
-
-        .pub-authors {
-            font-size: .84rem;
-            color: var(--warm-gray);
-            font-style: italic;
-            margin-bottom: .3rem;
-        }
-
-        .pub-authors .me {
-            font-weight: 600;
-            color: var(--ink-soft);
-            font-style: normal;
-        }
-
-        .pub-venue {
-            font-size: .84rem;
-            color: var(--accent2);
-            font-weight: 600;
-            margin-bottom: .5rem;
-        }
-
-        .pub-links { display: flex; gap: .5rem; flex-wrap: wrap; }
-
-        .pub-link {
-            font-family: var(--mono);
-            font-size: .7rem;
-            padding: .18rem .5rem;
-            border: 1.5px solid var(--line);
-            border-radius: 2px;
-            color: var(--ink-soft);
-            text-decoration: none;
-            transition: all .2s;
-            letter-spacing: .04em;
-        }
-
-        .pub-link:hover {
-            background: var(--ink);
-            color: var(--paper);
-            border-color: var(--ink);
-            opacity: 1;
-        }
-
-        .pub-sub-title {
-            font-family: var(--display);
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin: 2.2rem 0 .8rem;
-            padding-bottom: .4rem;
-            border-bottom: 1px dashed var(--line);
-            letter-spacing: .01em;
-        }
-
-        /* ─── SKILLS ────────────────────────────────────────── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-card {
-            padding: 1rem 1.2rem;
-            background: var(--cream);
-            border: 1px solid var(--line);
-            border-radius: 4px;
-            transition: transform .2s, box-shadow .2s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,.07);
-        }
-
-        .skill-label {
-            font-family: var(--mono);
-            font-size: .72rem;
-            font-weight: 500;
-            color: var(--accent2);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            margin-bottom: .4rem;
-        }
-
-        .skill-items {
-            font-size: .875rem;
-            color: var(--ink-soft);
-            line-height: 1.6;
-        }
-
-        /* ─── AWARDS ────────────────────────────────────────── */
-        .awards-list { display: flex; flex-direction: column; gap: 1rem; }
-
-        .award-card {
-            display: flex;
-            gap: 1.2rem;
-            padding: 1.1rem 1.3rem;
-            background: var(--cream);
-            border: 1px solid var(--line);
-            border-radius: 4px;
-            align-items: flex-start;
-            transition: transform .2s, box-shadow .2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .award-card::after {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 3px;
-            background: var(--gold);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform .3s ease;
-        }
-
-        .award-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,.06); }
-        .award-card:hover::after { transform: scaleY(1); }
-
-        .award-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            background: var(--ink);
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .9rem;
-            flex-shrink: 0;
-        }
-
-        .award-title {
-            font-weight: 600;
-            font-size: .93rem;
-            color: var(--ink);
-            margin-bottom: .2rem;
-        }
-
-        .award-desc {
-            font-size: .84rem;
-            color: var(--warm-gray);
-            line-height: 1.55;
-        }
-
-        /* ─── EDUCATION ─────────────────────────────────────── */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1rem;
-        }
-
-        .edu-card {
-            padding: 1.3rem 1.4rem;
-            background: var(--cream);
-            border: 1px solid var(--line);
-            border-radius: 4px;
-            transition: transform .2s, box-shadow .2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .edu-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .35s ease;
-        }
-
-        .edu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
-        .edu-card:hover::before { transform: scaleX(1); }
-
-        .edu-year-badge {
-            font-family: var(--mono);
-            font-size: .68rem;
-            color: var(--accent);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            margin-bottom: .5rem;
-        }
-
-        .edu-degree {
-            font-weight: 600;
-            font-size: .93rem;
-            color: var(--ink);
-            margin-bottom: .25rem;
-            line-height: 1.35;
-        }
-
-        .edu-inst {
-            font-size: .84rem;
-            color: var(--warm-gray);
-            line-height: 1.5;
-        }
-
-        .edu-gpa {
-            margin-top: .5rem;
-            display: inline-block;
-            font-family: var(--mono);
-            font-size: .68rem;
-            padding: .12rem .45rem;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 2px;
-        }
-
-        /* ─── FOOTER ────────────────────────────────────────── */
-        footer {
-            background: var(--ink);
-            color: rgba(245,240,232,.45);
-            text-align: center;
-            padding: 2.5rem var(--pad);
-            font-size: .8rem;
-            font-family: var(--mono);
-        }
-
-        footer a { color: rgba(245,240,232,.7); }
-
-        .footer-name {
-            font-family: var(--display);
-            font-size: 1.5rem;
-            color: rgba(245,240,232,.8);
-            font-weight: 600;
-            margin-bottom: .6rem;
-            letter-spacing: .01em;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.8rem;
-            margin: .9rem 0;
-            flex-wrap: wrap;
-        }
-
-        /* ─── FLOATING BACK-TO-TOP ──────────────────────────── */
-        #top-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 40px;
-            height: 40px;
-            background: var(--ink);
-            color: var(--paper);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: .9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .3s, transform .3s;
-            z-index: 500;
-        }
-
-        #top-btn.show { opacity: 1; pointer-events: auto; }
-        #top-btn:hover { transform: translateY(-3px); background: var(--accent); }
-
-        /* ─── RESPONSIVE ────────────────────────────────────── */
-        @media (max-width: 860px) {
-            .hero { grid-template-columns: 1fr; gap: 2rem; }
-            .photo-frame { margin: 0 auto; }
-            .about-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .pub { grid-template-columns: 1fr; }
-            .pub-year-col { text-align: left; }
-            .nav-links { display: none; }
-        }
-
-        @media (max-width: 560px) {
-            .edu-grid { grid-template-columns: 1fr; }
-            .about-stats { grid-template-columns: 1fr 1fr; }
-        }
-    </style>
 </head>
 <body>
 
 <div id="progress"></div>
-<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- ─── NAV ─────────────────────────────────────────────── -->
+<!-- NAV -->
+
 <nav>
     <div class="nav-inner">
         <span class="nav-name">Naimul <span>Haque</span></span>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+        </div>
     </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────────────────── -->
+<!-- HERO -->
+
 <header>
     <div class="hero">
         <div>
             <div class="photo-frame">
-                <img src="images/profile/naimul.jpg"
-                     alt="Naimul Haque"
-                     class="hero-photo"
+                <img src="images/profile/naimul.jpg" alt="Naimul Haque" class="hero-photo"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                 <div class="hero-photo-placeholder" style="display:none;">NH</div>
             </div>
@@ -1018,38 +462,22 @@
             <div class="hero-tagline">Entrepreneur · Computer Vision · LLMs · Trustworthy AI</div>
             <div class="hero-affil">
                 <strong>PhD Student &amp; Graduate Research Assistant</strong><br>
-                School of Electrical Engineering &amp; Computer Science<br>
-                Louisiana State University (LSU), Baton Rouge, LA<br>
+                School of EECS · Louisiana State University (LSU), Baton Rouge, LA<br>
                 <span class="founder">Founder @ Gradmate.ai</span>
             </div>
             <div class="hero-contacts">
-                <span><i class="fas fa-envelope"></i> naimul@gradmate.ai</span>
-                <span><i class="fas fa-envelope"></i> nhaque4@lsu.edu</span>
+                <span><i class="fas fa-envelope"></i> naimul@gradmate.ai · nhaque4@lsu.edu</span>
                 <span><i class="fas fa-phone"></i> +1 (607) 454-1231</span>
                 <span><i class="fas fa-map-marker-alt"></i> Baton Rouge, LA 70803</span>
             </div>
             <div class="hero-links">
-                <a class="hero-link" href="https://naimul011.github.io/" target="_blank">
-                    <i class="fas fa-globe"></i> Website
-                </a>
-                <a class="hero-link" href="https://www.linkedin.com/in/naimulhaque/" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a class="hero-link" href="https://github.com/naimul011" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a class="hero-link" href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" target="_blank">
-                    <i class="fas fa-graduation-cap"></i> Scholar
-                </a>
-                <a class="hero-link" href="https://huggingface.co/naimul011" target="_blank">
-                    <i class="fas fa-robot"></i> HuggingFace
-                </a>
-                <a class="hero-link" href="https://www.researchgate.net/profile/Naimul-Haque-6/research" target="_blank">
-                    <i class="fab fa-researchgate"></i> ResearchGate
-                </a>
-                <a class="hero-link" href="https://orcid.org/0009-0000-7816-7554" target="_blank">
-                    <i class="fab fa-orcid"></i> ORCID
-                </a>
+                <a class="hero-link" href="https://naimul011.github.io/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+                <a class="hero-link" href="https://www.linkedin.com/in/naimulhaque/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a class="hero-link" href="https://github.com/naimul011" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a class="hero-link" href="https://scholar.google.com/citations?user=rN_DhAYAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
+                <a class="hero-link" href="https://huggingface.co/naimul011" target="_blank"><i class="fas fa-robot"></i> HuggingFace</a>
+                <a class="hero-link" href="https://www.researchgate.net/profile/Naimul-Haque-6/research" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+                <a class="hero-link" href="https://orcid.org/0009-0000-7816-7554" target="_blank"><i class="fab fa-orcid"></i> ORCID</a>
             </div>
         </div>
     </div>
@@ -1057,813 +485,545 @@
 
 <hr class="divider">
 
-<!-- ─── MAIN ─────────────────────────────────────────────── -->
 <main class="page">
 
-    <!-- ABOUT -->
-    <section id="about" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">01</span>
-            <span class="sec-title-text">About</span>
-            <span class="sec-title-line"></span>
+```
+<!-- ABOUT -->
+<section id="about" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">01</span>
+        <span class="sec-title-text">About</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="about-grid reveal">
+        <div class="about-text">
+            <p>PhD student at LSU working at the intersection of <strong>computer vision</strong>, <strong>LLMs</strong>, and <strong>Trustworthy AI</strong>. Doctoral research focuses on <em>privacy-preserving face-swapping</em> — transferring facial identity while formally protecting sensitive biometric attributes from inference attacks.</p>
+            <p>Founder of <a href="https://gradmate.ai" target="_blank"><strong>Gradmate.ai</strong></a>, an LLM-powered platform for graduate applicants featuring semantic program matching, multi-agent SOP generation, and IELTS practice. Previously GRA at Alfred University, winning <em>1st place (tied)</em> in the Advizex AI Innovation Challenge.</p>
+            <p>Publications across <strong>IEEE</strong>, <strong>ICPR</strong>, and <strong>arXiv</strong> in facial captioning, sign-language recognition, license plate OCR, and toxic content classification. Open datasets and models on HuggingFace actively used by the community.</p>
         </div>
-        <div class="about-grid reveal">
-            <div class="about-text">
-                <p>
-                    I am a PhD student and Graduate Research Assistant at Louisiana State University (LSU), where
-                    my research sits at the intersection of <strong>computer vision</strong>, <strong>large language models</strong>,
-                    and <strong>multimodal AI</strong>. My current doctoral work focuses on <em>privacy-preserving face-swapping</em> pipelines — transferring facial identity while formally protecting sensitive biometric attributes — directly contributing to Trustworthy AI and data privacy research.
-                </p>
-                <p>
-                    In parallel, I am the founder of <a href="https://gradmate.ai" target="_blank"><strong>Gradmate.ai</strong></a> —
-                    an AI-powered platform streamlining graduate school applications through LLM orchestration,
-                    semantic program matching, SOP generation, and IELTS practice. Prior to LSU, I was a Graduate Research
-                    Assistant at Alfred University, where I won <em>1st place (tied)</em> in the Advizex AI Innovation
-                    Challenge, developed an AI sales bot projected to increase ROI by 25%.
-                </p>
-                <p>
-                    My publication record spans <strong>IEEE conferences</strong>, <strong>ICPR</strong>, and <strong>arXiv</strong>,
-                    with work in facial attribute captioning, sign-language recognition, low-resolution license plate
-                    recognition, and toxic content classification. I also have open datasets and fine-tuned models on HuggingFace actively used by the community.
-                </p>
-            </div>
-            <div class="about-stats">
-                <div class="stat-box">
-                    <div class="stat-num">6+</div>
-                    <div class="stat-label">Publications</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-num">4.0</div>
-                    <div class="stat-label">MSc GPA</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-num">5+</div>
-                    <div class="stat-label">Years Teaching</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-num">1st</div>
-                    <div class="stat-label">Advizex AI Prize</div>
-                </div>
-            </div>
+        <div class="about-stats">
+            <div class="stat-box"><div class="stat-num">6+</div><div class="stat-label">Publications</div></div>
+            <div class="stat-box"><div class="stat-num">4.0</div><div class="stat-label">MSc GPA</div></div>
+            <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Yrs Teaching</div></div>
+            <div class="stat-box"><div class="stat-num">1st</div><div class="stat-label">Advizex Prize</div></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- RESEARCH INTERESTS -->
-    <section id="interests" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">02</span>
-            <span class="sec-title-text">Research Interests</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="tags reveal">
-            <span class="tag primary">Trustworthy AI</span>
-            <span class="tag primary">Privacy-Preserving AI</span>
-            <span class="tag primary">Computer Vision</span>
-            <span class="tag primary">Face Analysis &amp; Synthesis</span>
-            <span class="tag primary">Large Language Models</span>
-            <span class="tag primary">Catastrophic Forgetting</span>
-            <span class="tag">Agentic AI &amp; Multi-Agent Systems</span>
-            <span class="tag">Representation Learning</span>
-            <span class="tag">Multimodal Systems</span>
-            <span class="tag">GAN &amp; Diffusion Models</span>
-            <span class="tag">NLP / Transformers</span>
-            <span class="tag">Continual Learning</span>
-            <span class="tag">Reinforcement Learning</span>
-            <span class="tag">AI for Finance &amp; Banking</span>
-            <span class="tag">AI for Energy Systems</span>
-            <span class="tag">Image Captioning</span>
-        </div>
-    </section>
+<!-- INTERESTS -->
+<section id="interests" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">02</span>
+        <span class="sec-title-text">Research Interests</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="tags reveal">
+        <span class="tag primary">Trustworthy AI</span>
+        <span class="tag primary">Privacy-Preserving AI</span>
+        <span class="tag primary">Computer Vision</span>
+        <span class="tag primary">Face Analysis &amp; Synthesis</span>
+        <span class="tag primary">Large Language Models</span>
+        <span class="tag primary">Catastrophic Forgetting</span>
+        <span class="tag">Agentic AI &amp; Multi-Agent Systems</span>
+        <span class="tag">Representation Learning</span>
+        <span class="tag">Multimodal Systems</span>
+        <span class="tag">GAN &amp; Diffusion Models</span>
+        <span class="tag">NLP / Transformers</span>
+        <span class="tag">Continual Learning</span>
+        <span class="tag">Reinforcement Learning</span>
+        <span class="tag">AI for Finance &amp; Banking</span>
+        <span class="tag">AI for Energy Systems</span>
+        <span class="tag">Image Captioning</span>
+    </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">03</span>
-            <span class="sec-title-text">Selected Projects</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="projects-grid">
+<!-- PROJECTS -->
+<section id="projects" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">03</span>
+        <span class="sec-title-text">Selected Projects</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="projects-grid">
 
-            <!-- Privacy-Preserving Face Swap (PhD) -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">PhD Research · Trustworthy AI · Current</div>
-                    <div class="project-title">Privacy-Preserving Face-Swapping Pipeline</div>
-                    <p class="project-desc">
-                        Current PhD research developing a face-swapping pipeline that transfers facial identity while formally protecting sensitive biometric attributes from inference attacks. Directly contributing to Trustworthy AI and data privacy, with techniques for identity disentanglement in generative models enabling controlled face synthesis with formal privacy guarantees.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag accent-tag">Current Work</span>
-                        <span class="tag">Trustworthy AI</span>
-                        <span class="tag">Privacy</span>
-                        <span class="tag">Face Swapping</span>
-                        <span class="tag">Biometric Privacy</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Face Swap / Disentanglement -->
-            <div class="project-card reveal">
-                <div class="project-img-wrap">
-                    <img src="images/pipeline_pair04.png"
-                         alt="W-Space Refined Face Swapping Pipeline"
-                         onerror="this.parentElement.style.background='var(--cream)';this.style.display='none';">
-                </div>
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · Generative AI</div>
-                    <div class="project-title">Neural Facial Identity Disentanglement via W-Space Refined StyleGAN Swapping</div>
-                    <p class="project-desc">
-                        A face-swapping pipeline disentangling facial identity from expression and appearance
-                        in StyleGAN's W-space. Introduces DeepFace neutral-emotion filtering to source
-                        neutral-expression StyleGAN faces, paired with InsightFace gender validation for
-                        controlled attribute transfer. W-Space Refined blending outperforms Hybrid fusion
-                        (ID↔Src cosine similarity 0.359 vs. 0.232), enabled by convex-hull face masks from
-                        106 landmarks, fixed Poisson blending with ROI boundary clamping, and pre-blend colour correction.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">StyleGAN</span>
-                        <span class="tag">DeepFace</span>
-                        <span class="tag">InsightFace</span>
-                        <span class="tag">Poisson Blending</span>
-                        <span class="tag">W-Space</span>
-                        <span class="tag">Face Disentanglement</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Portrait Captioning -->
-            <div class="project-card reveal">
-                <div class="project-img-wrap">
-                    <img src="images/result_captions.png"
-                         alt="FaceGemma Portrait Captioning Results"
-                         onerror="this.parentElement.style.background='var(--cream)';this.style.display='none';">
-                </div>
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · Image Captioning · ICPR 2024</div>
-                    <div class="project-title">FaceGemma: Attribute-Aware Portrait Image Captioning</div>
-                    <p class="project-desc">
-                        FaceGemma enhances a Gemma-based vision-language model with an explicit facial
-                        attribute encoder, producing rich, identity-aware captions for portrait images. Trained
-                        on the custom FaceAttDB multilingual dataset (Zenodo), the model improves
-                        BLEU and CIDEr metrics over general-purpose captioners by conditioning generation on
-                        age, gender, emotion, and facial geometry.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Gemma VLM</span>
-                        <span class="tag">Facial Attributes</span>
-                        <span class="tag">Image Captioning</span>
-                        <span class="tag">FaceAttDB</span>
-                        <span class="tag">ICPR 2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Catastrophic Forgetting -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">Research · LLM · Continual Learning · ACL ARR</div>
-                    <div class="project-title">Catastrophic Forgetting in LLMs: Sequential Fine-Tuning on NLP Benchmarks</div>
-                    <p class="project-desc">
-                        Systematic empirical analysis of how LLMs degrade on previously learned NLP tasks
-                        after sequential domain fine-tuning. Benchmarks span GLUE tasks (SST-2, MRPC, CoLA, MNLI) across sub-10B open-weight models (Orca, Qwen). Explores elastic weight consolidation, LoRA merging, and replay strategies as mitigation techniques. Identified models with minimal forgetting for robust continual learning. Under review at ACL ARR 2024.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Continual Learning</span>
-                        <span class="tag">GLUE / SuperGLUE</span>
-                        <span class="tag">LoRA</span>
-                        <span class="tag">EWC</span>
-                        <span class="tag">Orca · Qwen</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gradmate.ai -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">Entrepreneurship · NLP · LLM Systems</div>
-                    <div class="project-title">Gradmate.ai — AI Copilot for Graduate School Applications</div>
-                    <p class="project-desc">
-                        Founded and engineered Gradmate.ai, an end-to-end LLM-powered platform for
-                        graduate applicants. Core features include semantic program discovery (dense
-                        retrieval over university programme embeddings), multi-agent SOP/LOR generation
-                        via LangGraph, IELTS adaptive practice, and a community knowledge base.
-                        Stack: LangChain · LangGraph · Groq · DeepSeek · Next.js. Seeking seed investment to scale.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">LangChain</span>
-                        <span class="tag">LangGraph</span>
-                        <span class="tag">Groq</span>
-                        <span class="tag">RAG</span>
-                        <span class="tag">Multi-Agent</span>
-                        <span class="tag">EdTech</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Multi-Agent Gemma -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">Agentic AI · Kaggle</div>
-                    <div class="project-title">Multi-Agent LLM System (Gemma / Kaggle)</div>
-                    <p class="project-desc">
-                        Implemented a three-agent system using Gemma LLMs for Kaggle data tasks: Agent-1 (prompt generation), Agent-2 (context retrieval &amp; elaboration), Agent-3 (suggestion synthesis). Backed by TensorFlow, PyTorch, and JAX. Also developed a reflection-based prompt engineering technique using Llama 3.1 for the LLM 20 Questions competition.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Gemma</span>
-                        <span class="tag">Multi-Agent</span>
-                        <span class="tag">JAX</span>
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">Prompt Engineering</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GE Vernova GridOS -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">PhD Thesis · LLM × Energy Systems</div>
-                    <div class="project-title">AI Copilot for GE Vernova GridOS: LLM-Driven Smart Grid Management</div>
-                    <p class="project-desc">
-                        Doctoral thesis developing a multi-agent LLM system integrated with GE Vernova's
-                        GridOS platform for real-time power grid decision support. Agents handle fault
-                        diagnosis, load-balancing recommendations, and operator-alert summarisation using
-                        LangChain tool-calling over ADMS/AEMS APIs. Evaluated against operator response
-                        latency and decision-accuracy benchmarks.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">LangChain</span>
-                        <span class="tag">Groq</span>
-                        <span class="tag">ADMS · AEMS</span>
-                        <span class="tag">Power Systems</span>
-                        <span class="tag">GE Vernova</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Battery ML -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">NSF Research · Physics-Informed ML</div>
-                    <div class="project-title">AI-Driven Battery Material Discovery (NSF Project)</div>
-                    <p class="project-desc">
-                        NSF-funded summer research applying physics-informed neural networks to predict battery performance metrics including energy density and fast-charging rates. Explored AI-driven material discovery workflows to accelerate next-generation battery development.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Physics-Informed NN</span>
-                        <span class="tag">Material Science</span>
-                        <span class="tag">NSF</span>
-                        <span class="tag">PyTorch</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Power Line Fault -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · Infrastructure Safety</div>
-                    <div class="project-title">Power Line Fault Detection via Vision-Language Model</div>
-                    <p class="project-desc">
-                        Leveraged Phi-3 Vision to analyze thermal and RGB power line imagery, detecting rust,
-                        hot spots, and flashover damage for infrastructure safety optimization. Demonstrates
-                        multimodal AI applied to critical energy infrastructure inspection workflows.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Phi-3 Vision</span>
-                        <span class="tag">VLM</span>
-                        <span class="tag">Thermal Imaging</span>
-                        <span class="tag">Infrastructure</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- License Plate -->
-            <div class="project-card reveal">
-                <div class="project-img-wrap">
-                    <img src="images/recog.png"
-                         alt="Bangla License Plate Recognition"
-                         onerror="this.parentElement.style.background='var(--cream)';this.style.display='none';">
-                </div>
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · OCR · IEEE</div>
-                    <div class="project-title">Automatic Bangla License Plate Recognition for Low-Resolution Imagery</div>
-                    <p class="project-desc">
-                        A two-stage deep-learning pipeline for recognising Bangla license plates under
-                        real-world low-resolution conditions. YOLO-based detector localises the plate region,
-                        followed by a CNN-LSTM sequence model for character recognition. Evaluated on a
-                        custom surveillance dataset achieving state-of-the-art accuracy for Bangla script.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">YOLOv8</span>
-                        <span class="tag">CNN-LSTM</span>
-                        <span class="tag">OCR</span>
-                        <span class="tag">Bangla Script</span>
-                        <span class="tag">IEEE STI 2022</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sign Language -->
-            <div class="project-card reveal">
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · Human-Computer Interaction</div>
-                    <div class="project-title">BdSpell: Real-Time Bangla Finger-Spelling Recognition via YOLO</div>
-                    <p class="project-desc">
-                        A real-time Bangla Sign Language finger-spelling system built on a custom-trained
-                        YOLOv8 object detector operating at 30+ FPS on commodity hardware. Curated dataset
-                        of 36 Bangla hand-gesture classes under varied lighting and background conditions,
-                        achieving 94.3% mAP. Published at ICRIC 2023.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">YOLOv8</span>
-                        <span class="tag">Sign Language</span>
-                        <span class="tag">Real-Time</span>
-                        <span class="tag">Bangla NLP</span>
-                        <span class="tag">ICRIC 2023</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Portrait Colorization -->
-            <div class="project-card reveal">
-                <div class="project-img-wrap">
-                    <img src="images/result.png"
-                         alt="Portrait Colorization Results"
-                         onerror="this.parentElement.style.background='var(--cream)';this.style.display='none';">
-                </div>
-                <div class="project-body">
-                    <div class="project-badge">Computer Vision · Generative · IEEE ICCIT</div>
-                    <div class="project-title">Grayscale Portrait Colorization via CNN and Pretrained VGG-Face Descriptors</div>
-                    <p class="project-desc">
-                        An automatic portrait colorization framework leveraging identity-aware features
-                        extracted from a pretrained VGG-Face network as conditioning signals for a CNN
-                        colorization decoder. By anchoring colour prediction to facial identity features,
-                        the model produces perceptually plausible skin-tone and hair-colour outputs consistent across
-                        different images of the same subject.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">CNN</span>
-                        <span class="tag">VGG-Face</span>
-                        <span class="tag">Colorization</span>
-                        <span class="tag">Portrait</span>
-                        <span class="tag">IEEE ICCIT 2019</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- PUBLICATIONS -->
-    <section id="publications" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">04</span>
-            <span class="sec-title-text">Publications</span>
-            <span class="sec-title-line"></span>
-        </div>
-
-        <div class="pub-list reveal">
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2024</span>
-                    <span class="pub-badge badge-review">Under Review</span>
-                </div>
-                <div>
-                    <div class="pub-title">Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span></div>
-                    <div class="pub-venue">ACL ARR 2024</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://www.overleaf.com/read/jnmbvnvtqcdv#964faf" target="_blank">Preprint</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2024</span>
-                    <span class="pub-badge badge-conf">ICPR</span>
-                </div>
-                <div>
-                    <div class="pub-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Iffat Labiba, Sadia Akter</div>
-                    <div class="pub-venue">International Conference on Pattern Recognition (ICPR 2024)</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://arxiv.org/abs/2309.13601" target="_blank">arXiv</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2023</span>
-                    <span class="pub-badge badge-conf">ICRIC</span>
-                </div>
-                <div>
-                    <div class="pub-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Meraj Serker, Tariq Bin Bashar</div>
-                    <div class="pub-venue">ICRIC 2023 — International Conference on Recent Innovations in Computing</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://arxiv.org/abs/2309.13676" target="_blank">arXiv</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2022</span>
-                    <span class="pub-badge badge-ieee">IEEE</span>
-                </div>
-                <div>
-                    <div class="pub-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Md. Bodrul, Abdullah, Towfiq, Mehorab</div>
-                    <div class="pub-venue">ICRPSET 2022 — International Conference on Recent Progresses in Science, Engineering and Technology</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://ieeexplore.ieee.org/document/10188551" target="_blank">IEEE Xplore</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2022</span>
-                    <span class="pub-badge badge-ieee">IEEE</span>
-                </div>
-                <div>
-                    <div class="pub-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</div>
-                    <div class="pub-venue">IEEE STI 2022 — 4th International Conference on Sustainable Technologies for Industry 4.0</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103289" target="_blank">IEEE Xplore</a>
-                        <a class="pub-link" href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" target="_blank">Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2019</span>
-                    <span class="pub-badge badge-ieee">IEEE</span>
-                </div>
-                <div>
-                    <div class="pub-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Samin Shahriar Tokey</div>
-                    <div class="pub-venue">IEEE ICCIT 2019 — 22nd International Conference on Computer and Information Technology</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://ieeexplore.ieee.org/document/9038376" target="_blank">IEEE Xplore</a>
-                        <a class="pub-link" href="https://github.com/naimul011/Portrait-Colorization" target="_blank">Code</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="pub-sub-title reveal">Datasets &amp; Models</div>
-
-        <div class="pub-list reveal">
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2022</span>
-                    <span class="pub-badge badge-data">Zenodo</span>
-                </div>
-                <div>
-                    <div class="pub-title">Bangla License Plate Dataset 2.5k</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span> et al.</div>
-                    <div class="pub-venue">Zenodo — 2022</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://zenodo.org/record/7110401" target="_blank">Download</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2023</span>
-                    <span class="pub-badge badge-data">Zenodo</span>
-                </div>
-                <div>
-                    <div class="pub-title">FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Abida Sultana</div>
-                    <div class="pub-venue">Zenodo — June 2023</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://zenodo.org/record/8144361" target="_blank">Download</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2023</span>
-                    <span class="pub-badge badge-data">HF</span>
-                </div>
-                <div>
-                    <div class="pub-title">Bangla Toxic Comments Database</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span>, Badrul</div>
-                    <div class="pub-venue">HuggingFace Datasets — June 2023</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" target="_blank">Dataset</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-year-col">
-                    <span class="pub-year">2024</span>
-                    <span class="pub-badge badge-data">HF</span>
-                </div>
-                <div>
-                    <div class="pub-title">GlueOrca &amp; GlueQwen: Fine-tuned Models for GLUE Benchmark Tasks</div>
-                    <div class="pub-authors"><span class="me">Naimul Haque</span></div>
-                    <div class="pub-venue">HuggingFace Model Repository</div>
-                    <div class="pub-links">
-                        <a class="pub-link" href="https://huggingface.co/naimul011/GlueOrca" target="_blank">GlueOrca</a>
-                        <a class="pub-link" href="https://huggingface.co/naimul011/GlueQwen" target="_blank">GlueQwen</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">05</span>
-            <span class="sec-title-text">Experience</span>
-            <span class="sec-title-line"></span>
-        </div>
-
-        <div class="timeline reveal">
-
-            <div class="tl-item current">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Jan 2026 – Present</div>
-                <div class="tl-title">Graduate Research Assistant &amp; PhD Student</div>
-                <div class="tl-org">Louisiana State University (LSU)</div>
-                <div class="tl-body">
-                    Privacy-preserving face analysis, identity disentanglement in generative models, and AI for smart energy grids.
-                    <ul>
-                        <li>Developing privacy-preserving face-swapping pipeline — Trustworthy AI contribution</li>
-                        <li>Sequential fine-tuning experiments on GLUE/SuperGLUE benchmarks</li>
-                        <li>LLM copilot system for GE Vernova GridOS (thesis)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tl-item current">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Nov 2024 – Present</div>
-                <div class="tl-title">Founder &amp; Chief Technology Officer</div>
-                <div class="tl-org">Gradmate Inc. / Gradmate.ai</div>
-                <div class="tl-body">
-                    Founded and lead development of an AI-powered graduate application platform.
-                    <ul>
-                        <li>LangChain &amp; LangGraph for multi-agent LLM orchestration</li>
-                        <li>Groq and DeepSeek for low-latency LLM inference</li>
-                        <li>RAG-based program discovery and SOP generation pipelines</li>
-                        <li>System architecture, model deployment, scalability</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Summer 2025</div>
-                <div class="tl-title">Battery Machine Learning Researcher</div>
-                <div class="tl-org">NSF-Funded Project, Alfred University</div>
-                <div class="tl-body">
-                    Applied physics-informed neural networks to predict battery performance metrics (energy density, fast-charging rates) for AI-driven material discovery.
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Summer 2025</div>
-                <div class="tl-title">Summer Research Director</div>
-                <div class="tl-org">Alfred University — Undergrad Summer Research Program</div>
-                <div class="tl-body">
-                    Directed undergraduate interdisciplinary research projects; provided mentorship on experimental design, data analysis, and project execution.
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Summer 2025</div>
-                <div class="tl-title">Summer Internship Fellow</div>
-                <div class="tl-org">Institute for Experiential Entrepreneurship, Alfred University</div>
-                <div class="tl-body">
-                    Contributed to AI-driven educational programs and mentored students integrating AI technologies into experiential learning frameworks.
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Jan 2024 – Sep 2025</div>
-                <div class="tl-title">Graduate Assistant</div>
-                <div class="tl-org">Alfred University — Inamori School of Engineering</div>
-                <div class="tl-body">
-                    Taught and prepared labs for Microprocessor, Mechatronics, Engineering Design, and Python for Power Electronics. Guided students in microprocessor interfacing, mechatronics design, and Python-based simulations.
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Aug – Dec 2023</div>
-                <div class="tl-title">Assistant Professor</div>
-                <div class="tl-org">Uttara University</div>
-                <div class="tl-body">
-                    Taught Discrete Mathematics, Data Structures, and Structured Programming.
-                </div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">Apr 2019 – Jul 2023</div>
-                <div class="tl-title">Senior Lecturer / Lecturer</div>
-                <div class="tl-org">Manarat International University &amp; Cognition.AI Lab</div>
-                <div class="tl-body">
-                    Delivered AI, Computer Vision &amp; Robotics, Neural Networks &amp; Fuzzy Systems, Pattern Recognition, Algorithm, Microprocessor &amp; Interfacing. Supervised capstone projects in face recognition and object detection.
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education" class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">06</span>
-            <span class="sec-title-text">Education</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="edu-grid reveal">
-
-            <div class="edu-card">
-                <div class="edu-year-badge">2026 – Present</div>
-                <div class="edu-degree">Ph.D. — Electrical Engineering &amp; Computer Science</div>
-                <div class="edu-inst">Louisiana State University (LSU)<br>Baton Rouge, LA</div>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-year-badge">Jan 2024 – Dec 2025</div>
-                <div class="edu-degree">M.Sc. — Electrical Engineering</div>
-                <div class="edu-inst">Alfred University<br>Alfred, NY</div>
-                <span class="edu-gpa">GPA 4.0 / 4.0</span>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-year-badge">2019 – 2022</div>
-                <div class="edu-degree">M.Sc. — Computer Science</div>
-                <div class="edu-inst">Jahangirnagar University<br>Bangladesh</div>
-                <span class="edu-gpa">GPA 3.53 / 4.0</span>
-            </div>
-
-            <div class="edu-card">
-                <div class="edu-year-badge">2014 – 2018</div>
-                <div class="edu-degree">B.Sc. — Computer Science &amp; Engineering</div>
-                <div class="edu-inst">Ahsanullah University of Science &amp; Technology (AUST)<br>Bangladesh</div>
-                <span class="edu-gpa">GPA 3.71 / 4.0</span>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">07</span>
-            <span class="sec-title-text">Technical Skills</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="skills-grid reveal">
-            <div class="skill-card">
-                <div class="skill-label">Languages</div>
-                <div class="skill-items">Python (Expert) · R · C/C++ · MATLAB · JavaScript · Linux/Unix</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">CV Frameworks</div>
-                <div class="skill-items">OpenCV · YOLOv8 · Detectron2 · DLIB · SAM · Landmark Detection</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">Generative / Face</div>
-                <div class="skill-items">StyleGAN · DeepFace · InsightFace · Diffusers · GANs · Diffusion Models</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">ML / DL</div>
-                <div class="skill-items">PyTorch · TensorFlow · Keras · JAX · Scikit-learn · CNNs</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">NLP / LLM</div>
-                <div class="skill-items">HuggingFace · LangChain · LangGraph · Transformers · LoRA · RAG</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">Inference</div>
-                <div class="skill-items">Groq · DeepSeek · Ollama · vLLM · Multi-Agent Systems</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">MLOps / Tools</div>
-                <div class="skill-items">Docker · Git · Google Cloud · Weights &amp; Biases · Unity · LaTeX</div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">Power Systems</div>
-                <div class="skill-items">GE ADMS · AEMS · GridOS · Power Analytics</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AWARDS -->
-    <section class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">08</span>
-            <span class="sec-title-text">Awards &amp; Recognition</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="awards-list reveal">
-
-            <div class="award-card">
-                <div class="award-icon"><i class="fas fa-trophy"></i></div>
-                <div>
-                    <div class="award-title">1st Place (Tied) — Advizex AI Innovation Challenge · 2024</div>
-                    <div class="award-desc">Built an AI sales bot using Llama &amp; LangChain, projected to increase ROI by 25%. Featured in <a href="https://www.alfred.edu/about/news/pressreleases/2025/05/graduate-student-naimul-haque-develops-top-ai-program-in-company-competition.cfm" target="_blank">Alfred University Press Release, May 2025</a>.</div>
-                </div>
-            </div>
-
-            <div class="award-card">
-                <div class="award-icon"><i class="fas fa-certificate"></i></div>
-                <div>
-                    <div class="award-title">EPRI Certification — Machine Vision in the Electric Industry with Deep Learning · Aug 2024</div>
-                    <div class="award-desc">22 PDHs in Power Industry AI applications.</div>
-                </div>
-            </div>
-
-            <div class="award-card">
-                <div class="award-icon"><i class="fas fa-medal"></i></div>
-                <div>
-                    <div class="award-title">1st Position — Inter-University ADEX Engenius 2017 Software Development Competition</div>
-                    <div class="award-desc">Team Telapoka.</div>
-                </div>
-            </div>
-
-            <div class="award-card">
-                <div class="award-icon"><i class="fas fa-award"></i></div>
-                <div>
-                    <div class="award-title">2nd Position — Techfiesta 17 Software Development Competition</div>
-                    <div class="award-desc">Team Telapoka.</div>
-                </div>
-            </div>
-
-            <div class="award-card">
-                <div class="award-icon"><i class="fas fa-star"></i></div>
-                <div>
-                    <div class="award-title">1st Position — Intra-AUST Project Show, CSE Software Development Competition</div>
-                    <div class="award-desc">Team Z Warriors.</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- REFERENCES -->
-    <section class="sec">
-        <div class="sec-title reveal">
-            <span class="sec-num">09</span>
-            <span class="sec-title-text">References</span>
-            <span class="sec-title-line"></span>
-        </div>
-        <div class="skills-grid reveal">
-            <div class="skill-card">
-                <div class="skill-label">Reference 1</div>
-                <div class="skill-items">
-                    <strong>Dr. Xingwu Wang</strong><br>
-                    Professor of Electrical Engineering<br>
-                    Alfred University<br>
-                    <a href="mailto:fwangx@alfred.edu">fwangx@alfred.edu</a> · (607) 871-2548
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">Reference 2</div>
-                <div class="skill-items">
-                    <strong>Dr. Kun Wang</strong><br>
-                    Associate Professor, Material Science &amp; Eng.<br>
-                    Alfred University<br>
-                    <a href="mailto:wang@alfred.edu">wang@alfred.edu</a> · (607) 871-2729
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-label">Reference 3</div>
-                <div class="skill-items">
-                    <strong>Dr. Kazi A. Kalpoma</strong><br>
-                    Professor, Dept. of CSE<br>
-                    Ahsanullah University of Science &amp; Technology<br>
-                    <a href="mailto:kalpoma@aust.edu">kalpoma@aust.edu</a>
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">PhD Research · Trustworthy AI · Current</div>
+                <div class="project-title">Privacy-Preserving Face-Swapping Pipeline</div>
+                <p class="project-desc">Face-swapping system transferring identity while formally protecting sensitive biometric attributes from inference attacks, using identity disentanglement in generative models for controlled synthesis with privacy guarantees.</p>
+                <div class="project-tags">
+                    <span class="tag accent-tag">Current</span>
+                    <span class="tag">Trustworthy AI</span><span class="tag">Privacy</span>
+                    <span class="tag">Face Swapping</span><span class="tag">Biometrics</span>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="project-card reveal">
+            <div class="project-img-wrap">
+                <img src="images/pipeline_pair04.png" alt="W-Space Face Swapping"
+                     onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+            </div>
+            <div class="project-body">
+                <div class="project-badge">Computer Vision · Generative AI</div>
+                <div class="project-title">Facial Identity Disentanglement via W-Space StyleGAN</div>
+                <p class="project-desc">Disentangles identity from expression in StyleGAN's W-space using DeepFace neutral-emotion filtering and InsightFace gender validation. W-Space Refined blending achieves cosine similarity 0.359 vs. 0.232, using convex-hull masks (106 landmarks) and Poisson blending.</p>
+                <div class="project-tags">
+                    <span class="tag">StyleGAN</span><span class="tag">DeepFace</span>
+                    <span class="tag">InsightFace</span><span class="tag">W-Space</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-img-wrap">
+                <img src="images/result_captions.png" alt="FaceGemma"
+                     onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+            </div>
+            <div class="project-body">
+                <div class="project-badge">Computer Vision · ICPR 2024</div>
+                <div class="project-title">FaceGemma: Attribute-Aware Portrait Captioning</div>
+                <p class="project-desc">Gemma VLM with a facial attribute encoder trained on multilingual FaceAttDB. Conditions generation on age, gender, emotion, and facial geometry, improving BLEU and CIDEr over general captioners.</p>
+                <div class="project-tags">
+                    <span class="tag">Gemma VLM</span><span class="tag">FaceAttDB</span>
+                    <span class="tag">ICPR 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">LLM · Continual Learning · ACL ARR</div>
+                <div class="project-title">Catastrophic Forgetting in LLMs</div>
+                <p class="project-desc">Empirical study of LLM degradation after sequential fine-tuning across GLUE tasks on sub-10B models (Orca, Qwen). Evaluated EWC, LoRA merging, and replay as mitigations. Under review at ACL ARR 2024.</p>
+                <div class="project-tags">
+                    <span class="tag">GLUE</span><span class="tag">LoRA</span>
+                    <span class="tag">EWC</span><span class="tag">Orca · Qwen</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">Entrepreneurship · LLM Systems</div>
+                <div class="project-title">Gradmate.ai — AI Copilot for Grad Applications</div>
+                <p class="project-desc">LLM platform featuring dense-retrieval program discovery, multi-agent SOP/LOR generation via LangGraph, and IELTS adaptive practice. Stack: LangChain · Groq · DeepSeek · Next.js.</p>
+                <div class="project-tags">
+                    <span class="tag">LangGraph</span><span class="tag">RAG</span>
+                    <span class="tag">Multi-Agent</span><span class="tag">EdTech</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">Agentic AI · Kaggle</div>
+                <div class="project-title">Multi-Agent LLM System (Gemma / Kaggle)</div>
+                <p class="project-desc">Three-agent Gemma pipeline: prompt generation → context retrieval → suggestion synthesis. Built with TF/PyTorch/JAX. Also features a reflection-based Llama 3.1 prompting technique for the LLM 20 Questions competition.</p>
+                <div class="project-tags">
+                    <span class="tag">Gemma</span><span class="tag">Multi-Agent</span>
+                    <span class="tag">JAX</span><span class="tag">Prompt Engineering</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">PhD Thesis · LLM × Energy Systems</div>
+                <div class="project-title">AI Copilot for GE Vernova GridOS</div>
+                <p class="project-desc">Multi-agent LLM system for real-time power grid decision support: fault diagnosis, load-balancing, and operator alert summarisation via LangChain tool-calling over GE's ADMS/AEMS APIs.</p>
+                <div class="project-tags">
+                    <span class="tag">LangChain</span><span class="tag">ADMS</span>
+                    <span class="tag">Power Systems</span><span class="tag">GE Vernova</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">NSF Research · Physics-Informed ML</div>
+                <div class="project-title">AI-Driven Battery Material Discovery</div>
+                <p class="project-desc">NSF-funded project using physics-informed neural networks to predict battery performance (energy density, fast-charging rates), accelerating next-generation material discovery.</p>
+                <div class="project-tags">
+                    <span class="tag">Physics-Informed NN</span><span class="tag">NSF</span>
+                    <span class="tag">Material Science</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">VLM · Infrastructure Safety</div>
+                <div class="project-title">Power Line Fault Detection via VLM</div>
+                <p class="project-desc">Phi-3 Vision analyses thermal and RGB power line images, detecting rust, hot spots, and flashover damage for critical energy infrastructure inspection.</p>
+                <div class="project-tags">
+                    <span class="tag">Phi-3 Vision</span><span class="tag">Thermal Imaging</span>
+                    <span class="tag">Infrastructure</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-img-wrap">
+                <img src="images/recog.png" alt="Bangla License Plate"
+                     onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+            </div>
+            <div class="project-body">
+                <div class="project-badge">OCR · IEEE STI 2022</div>
+                <div class="project-title">Bangla License Plate Recognition for Low-Resolution Imagery</div>
+                <p class="project-desc">Two-stage pipeline: YOLO-based plate detector + CNN-LSTM character recogniser. SOTA accuracy on a custom surveillance dataset for Bangla script.</p>
+                <div class="project-tags">
+                    <span class="tag">YOLOv8</span><span class="tag">CNN-LSTM</span>
+                    <span class="tag">OCR</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-body">
+                <div class="project-badge">HCI · ICRIC 2023</div>
+                <div class="project-title">BdSpell: Real-Time Bangla Finger-Spelling</div>
+                <p class="project-desc">YOLOv8 model for Bangla Sign Language finger-spelling at 30+ FPS. 36-class dataset under varied conditions; 94.3% mAP.</p>
+                <div class="project-tags">
+                    <span class="tag">YOLOv8</span><span class="tag">Sign Language</span>
+                    <span class="tag">Real-Time</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-img-wrap">
+                <img src="images/result.png" alt="Portrait Colorization"
+                     onerror="this.parentElement.style.background='var(--bg-card)';this.style.display='none';">
+            </div>
+            <div class="project-body">
+                <div class="project-badge">Generative CV · IEEE ICCIT 2019</div>
+                <div class="project-title">Grayscale Portrait Colorization via CNN + VGG-Face</div>
+                <p class="project-desc">Identity-aware colorization using VGG-Face features to condition a CNN decoder. Produces consistent skin-tone and hair-colour outputs across images of the same subject.</p>
+                <div class="project-tags">
+                    <span class="tag">CNN</span><span class="tag">VGG-Face</span>
+                    <span class="tag">Colorization</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">04</span>
+        <span class="sec-title-text">Publications</span>
+        <span class="sec-title-line"></span>
+    </div>
+
+    <div class="pub-list reveal">
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2024</span><span class="pub-badge badge-review">Review</span></div>
+            <div>
+                <div class="pub-title">Catastrophic Forgetting in LLMs: A Comparative Analysis Across Language Tasks</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span></div>
+                <div class="pub-venue">ACL ARR 2024</div>
+                <div class="pub-links"><a class="pub-link" href="https://www.overleaf.com/read/jnmbvnvtqcdv#964faf" target="_blank">Preprint</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2024</span><span class="pub-badge badge-conf">ICPR</span></div>
+            <div>
+                <div class="pub-title">FaceGemma: Enhancing Image Captioning with Facial Attributes for Portrait Images</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Iffat Labiba, Sadia Akter</div>
+                <div class="pub-venue">International Conference on Pattern Recognition (ICPR 2024)</div>
+                <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2309.13601" target="_blank">arXiv</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2023</span><span class="pub-badge badge-conf">ICRIC</span></div>
+            <div>
+                <div class="pub-title">BdSpell: A YOLO-based Real-time Finger Spelling System for Bangla Sign Language</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Meraj Serker, Tariq Bin Bashar</div>
+                <div class="pub-venue">ICRIC 2023</div>
+                <div class="pub-links"><a class="pub-link" href="https://arxiv.org/abs/2309.13676" target="_blank">arXiv</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2022</span><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Bangla Toxic Comment Classification and Severity Measure Using Deep Learning</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Md. Bodrul, Abdullah, Towfiq, Mehorab</div>
+                <div class="pub-venue">ICRPSET 2022 (IEEE)</div>
+                <div class="pub-links"><a class="pub-link" href="https://ieeexplore.ieee.org/document/10188551" target="_blank">IEEE Xplore</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2022</span><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Automatic Bangla License Plate Recognition System for Low-Resolution Images</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Samira Islam, Rabeiya Afrose, Mohammad Shorif Uddin</div>
+                <div class="pub-venue">IEEE STI 2022</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103289" target="_blank">IEEE Xplore</a>
+                    <a class="pub-link" href="https://github.com/imbodrulalam/Toxic-Comment-Detection-BN" target="_blank">Code</a>
+                </div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2019</span><span class="pub-badge badge-ieee">IEEE</span></div>
+            <div>
+                <div class="pub-title">Grayscale Portrait Colorization using CNNs and Pretrained VGG-Face Descriptor</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Samin Shahriar Tokey</div>
+                <div class="pub-venue">IEEE ICCIT 2019</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://ieeexplore.ieee.org/document/9038376" target="_blank">IEEE Xplore</a>
+                    <a class="pub-link" href="https://github.com/naimul011/Portrait-Colorization" target="_blank">Code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pub-sub-title reveal">Datasets &amp; Models</div>
+    <div class="pub-list reveal">
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2022</span><span class="pub-badge badge-data">Zenodo</span></div>
+            <div>
+                <div class="pub-title">Bangla License Plate Dataset 2.5k</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span> et al.</div>
+                <div class="pub-venue">Zenodo, 2022</div>
+                <div class="pub-links"><a class="pub-link" href="https://zenodo.org/record/7110401" target="_blank">Download</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2023</span><span class="pub-badge badge-data">Zenodo</span></div>
+            <div>
+                <div class="pub-title">FaceAttDB: A Multilingual Dataset for Facial Attribute Captioning</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Abida Sultana</div>
+                <div class="pub-venue">Zenodo, June 2023</div>
+                <div class="pub-links"><a class="pub-link" href="https://zenodo.org/record/8144361" target="_blank">Download</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2023</span><span class="pub-badge badge-data">HF</span></div>
+            <div>
+                <div class="pub-title">Bangla Toxic Comments Database</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span>, Badrul</div>
+                <div class="pub-venue">HuggingFace Datasets, 2023</div>
+                <div class="pub-links"><a class="pub-link" href="https://huggingface.co/datasets/naimul011/BanglaToxicCommentsDB" target="_blank">Dataset</a></div>
+            </div>
+        </div>
+        <div class="pub">
+            <div class="pub-year-col"><span class="pub-year">2024</span><span class="pub-badge badge-data">HF</span></div>
+            <div>
+                <div class="pub-title">GlueOrca &amp; GlueQwen: Fine-tuned Models for GLUE Benchmark Tasks</div>
+                <div class="pub-authors"><span class="me">Naimul Haque</span></div>
+                <div class="pub-venue">HuggingFace Model Repository</div>
+                <div class="pub-links">
+                    <a class="pub-link" href="https://huggingface.co/naimul011/GlueOrca" target="_blank">GlueOrca</a>
+                    <a class="pub-link" href="https://huggingface.co/naimul011/GlueQwen" target="_blank">GlueQwen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">05</span>
+        <span class="sec-title-text">Experience</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="timeline reveal">
+        <div class="tl-item current">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jan 2026 – Present</div>
+            <div class="tl-title">Graduate Research Assistant &amp; PhD Student</div>
+            <div class="tl-org">Louisiana State University (LSU)</div>
+            <div class="tl-body">Privacy-preserving face analysis, identity disentanglement in generative models, and LLM copilot for GE Vernova GridOS (thesis).</div>
+        </div>
+        <div class="tl-item current">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Nov 2024 – Present</div>
+            <div class="tl-title">Founder &amp; CTO</div>
+            <div class="tl-org">Gradmate Inc. / Gradmate.ai</div>
+            <div class="tl-body">Built LangChain/LangGraph multi-agent platform, RAG program discovery, and SOP pipelines. Overseeing architecture, deployment, and growth.</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Summer 2025</div>
+            <div class="tl-title">Battery ML Researcher (NSF)</div>
+            <div class="tl-org">Alfred University</div>
+            <div class="tl-body">Physics-informed NNs for battery material discovery — predicting energy density and fast-charging rates.</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Summer 2025</div>
+            <div class="tl-title">Summer Research Director &amp; Internship Fellow</div>
+            <div class="tl-org">Alfred University</div>
+            <div class="tl-body">Directed interdisciplinary undergrad research; developed AI-driven educational programs at the Institute for Experiential Entrepreneurship.</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jan 2024 – Sep 2025</div>
+            <div class="tl-title">Graduate Assistant</div>
+            <div class="tl-org">Alfred University — Inamori School of Engineering</div>
+            <div class="tl-body">Labs and instruction for Microprocessor, Mechatronics, Engineering Design, and Python for Power Electronics.</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Aug – Dec 2023</div>
+            <div class="tl-title">Assistant Professor</div>
+            <div class="tl-org">Uttara University</div>
+            <div class="tl-body">Discrete Mathematics, Data Structures, and Structured Programming.</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Apr 2019 – Jul 2023</div>
+            <div class="tl-title">Senior Lecturer / Lecturer</div>
+            <div class="tl-org">Manarat International University &amp; Cognition.AI Lab</div>
+            <div class="tl-body">AI, Computer Vision &amp; Robotics, Neural Networks, Pattern Recognition. Supervised capstone projects in face recognition and object detection.</div>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">06</span>
+        <span class="sec-title-text">Education</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="edu-grid reveal">
+        <div class="edu-card">
+            <div class="edu-year-badge">2026 – Present</div>
+            <div class="edu-degree">Ph.D. — Electrical Engineering &amp; Computer Science</div>
+            <div class="edu-inst">Louisiana State University (LSU), Baton Rouge, LA</div>
+        </div>
+        <div class="edu-card">
+            <div class="edu-year-badge">Jan 2024 – Dec 2025</div>
+            <div class="edu-degree">M.Sc. — Electrical Engineering</div>
+            <div class="edu-inst">Alfred University, Alfred, NY</div>
+            <span class="edu-gpa">GPA 4.0 / 4.0</span>
+        </div>
+        <div class="edu-card">
+            <div class="edu-year-badge">2019 – 2022</div>
+            <div class="edu-degree">M.Sc. — Computer Science</div>
+            <div class="edu-inst">Jahangirnagar University, Bangladesh</div>
+            <span class="edu-gpa">GPA 3.53 / 4.0</span>
+        </div>
+        <div class="edu-card">
+            <div class="edu-year-badge">2014 – 2018</div>
+            <div class="edu-degree">B.Sc. — Computer Science &amp; Engineering</div>
+            <div class="edu-inst">Ahsanullah University of Science &amp; Technology (AUST), Bangladesh</div>
+            <span class="edu-gpa">GPA 3.71 / 4.0</span>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">07</span>
+        <span class="sec-title-text">Technical Skills</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="skills-grid reveal">
+        <div class="skill-card"><div class="skill-label">Languages</div><div class="skill-items">Python (Expert) · R · C/C++ · MATLAB · JavaScript · Linux/Unix</div></div>
+        <div class="skill-card"><div class="skill-label">CV Frameworks</div><div class="skill-items">OpenCV · YOLOv8 · Detectron2 · DLIB · SAM · Landmark Detection</div></div>
+        <div class="skill-card"><div class="skill-label">Generative / Face</div><div class="skill-items">StyleGAN · DeepFace · InsightFace · Diffusers · GANs</div></div>
+        <div class="skill-card"><div class="skill-label">ML / DL</div><div class="skill-items">PyTorch · TensorFlow · Keras · JAX · Scikit-learn</div></div>
+        <div class="skill-card"><div class="skill-label">NLP / LLM</div><div class="skill-items">HuggingFace · LangChain · LangGraph · Transformers · LoRA · RAG</div></div>
+        <div class="skill-card"><div class="skill-label">Inference</div><div class="skill-items">Groq · DeepSeek · Ollama · vLLM · Multi-Agent</div></div>
+        <div class="skill-card"><div class="skill-label">MLOps / Tools</div><div class="skill-items">Docker · Git · Google Cloud · Weights &amp; Biases · Unity · LaTeX</div></div>
+        <div class="skill-card"><div class="skill-label">Power Systems</div><div class="skill-items">GE ADMS · AEMS · GridOS · Power Analytics</div></div>
+    </div>
+</section>
+
+<!-- AWARDS -->
+<section class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">08</span>
+        <span class="sec-title-text">Awards &amp; Recognition</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="awards-list reveal">
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-trophy"></i></div>
+            <div>
+                <div class="award-title">1st Place (Tied) — Advizex AI Innovation Challenge · 2024</div>
+                <div class="award-desc">AI sales bot (Llama + LangChain), projected +25% ROI. <a href="https://www.alfred.edu/about/news/pressreleases/2025/05/graduate-student-naimul-haque-develops-top-ai-program-in-company-competition.cfm" target="_blank">Alfred University Press Release ↗</a></div>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-certificate"></i></div>
+            <div>
+                <div class="award-title">EPRI Certification — Machine Vision in the Electric Industry with Deep Learning · Aug 2024</div>
+                <div class="award-desc">22 PDHs in Power Industry AI.</div>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-medal"></i></div>
+            <div>
+                <div class="award-title">1st Position — Inter-University ADEX Engenius 2017 Software Development</div>
+                <div class="award-desc">Team Telapoka.</div>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-award"></i></div>
+            <div>
+                <div class="award-title">2nd Position — Techfiesta 17 Software Development Competition</div>
+                <div class="award-desc">Team Telapoka.</div>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-star"></i></div>
+            <div>
+                <div class="award-title">1st Position — Intra-AUST Project Show, CSE Software Development</div>
+                <div class="award-desc">Team Z Warriors.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="sec">
+    <div class="sec-title reveal">
+        <span class="sec-num">09</span>
+        <span class="sec-title-text">References</span>
+        <span class="sec-title-line"></span>
+    </div>
+    <div class="skills-grid reveal">
+        <div class="skill-card">
+            <div class="skill-label">Reference 1</div>
+            <div class="skill-items">
+                <strong>Dr. Xingwu Wang</strong><br>
+                Professor of Electrical Engineering, Alfred University<br>
+                <a href="mailto:fwangx@alfred.edu">fwangx@alfred.edu</a> · (607) 871-2548
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-label">Reference 2</div>
+            <div class="skill-items">
+                <strong>Dr. Kun Wang</strong><br>
+                Assoc. Professor, Material Science &amp; Eng., Alfred University<br>
+                <a href="mailto:wang@alfred.edu">wang@alfred.edu</a> · (607) 871-2729
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-label">Reference 3</div>
+            <div class="skill-items">
+                <strong>Dr. Kazi A. Kalpoma</strong><br>
+                Professor, CSE, AUST, Bangladesh<br>
+                <a href="mailto:kalpoma@aust.edu">kalpoma@aust.edu</a>
+            </div>
+        </div>
+    </div>
+</section>
+```
 
 </main>
 
-<!-- ─── FOOTER ───────────────────────────────────────────── -->
+<!-- FOOTER -->
+
 <footer id="contact">
     <div class="footer-name">Naimul Haque</div>
     <div class="footer-links">
@@ -1873,82 +1033,80 @@
         <a href="https://github.com/naimul011" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/naimulhaque/" target="_blank">LinkedIn</a>
     </div>
-    <p>Baton Rouge, LA &nbsp;·&nbsp; +1 (607) 454-1231</p>
-    <p style="margin-top:.7rem;font-size:.72rem;opacity:.4;">
-        © 2026 Naimul Haque &nbsp;·&nbsp; Last updated March 2026
-    </p>
+    <p>Baton Rouge, LA · +1 (607) 454-1231</p>
+    <p style="margin-top:.55rem;font-size:.66rem;opacity:.32;">© 2026 Naimul Haque · Last updated March 2026</p>
 </footer>
 
 <script>
-    /* ── PROGRESS BAR ───────────────────────── */
+    /* PROGRESS BAR */
     const bar = document.getElementById('progress');
     window.addEventListener('scroll', () => {
         const h = document.documentElement;
-        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-        bar.style.width = pct + '%';
+        bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
     }, { passive: true });
 
-    /* ── BACK TO TOP ────────────────────────── */
+    /* BACK TO TOP */
     const topBtn = document.getElementById('top-btn');
-    window.addEventListener('scroll', () => {
-        topBtn.classList.toggle('show', window.scrollY > 400);
-    }, { passive: true });
+    window.addEventListener('scroll', () => topBtn.classList.toggle('show', scrollY > 400), { passive: true });
 
-    /* ── SCROLL REVEAL ──────────────────────── */
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => entry.target.classList.add('visible'), i * 60);
-                revealObserver.unobserve(entry.target);
+    /* THEME TOGGLE */
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    function applyTheme(t) {
+        root.setAttribute('data-theme', t);
+        localStorage.setItem('nh-theme', t);
+        themeIcon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        toggleBtn.title = t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    applyTheme(localStorage.getItem('nh-theme') || 'dark');
+    toggleBtn.addEventListener('click', () => applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+    /* SCROLL REVEAL */
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); revealObs.unobserve(e.target); }
+        });
+    }, { threshold: 0.07, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* STAGGER PROJECT CARDS */
+    const cardObs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => { e.target.style.opacity = '1'; e.target.style.transform = 'none'; }, i * 70);
+                cardObs.unobserve(e.target);
             }
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.project-card').forEach(c => {
+        c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+        c.style.transition = 'opacity .5s ease, transform .5s ease, box-shadow .3s ease';
+        cardObs.observe(c);
+    });
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /* ── ACTIVE NAV ─────────────────────────── */
+    /* ACTIVE NAV */
     const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section[id]');
-
-    const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+    const navObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
                 navLinks.forEach(l => l.classList.remove('active'));
-                const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-                if (active) active.classList.add('active');
+                const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+                if (a) a.classList.add('active');
             }
         });
     }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
 
-    sections.forEach(s => navObserver.observe(s));
-
-    /* ── SMOOTH SCROLL ──────────────────────── */
+    /* SMOOTH SCROLL */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const t = document.querySelector(a.getAttribute('href'));
             if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         });
     });
-
-    /* ── STAGGER PROJECT CARDS ──────────────── */
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'none';
-                }, i * 80);
-                cardObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05 });
-
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(24px)';
-        card.style.transition = 'opacity .5s ease, transform .5s ease, box-shadow .3s ease';
-        cardObserver.observe(card);
-    });
 </script>
+
 </body>
 </html>
